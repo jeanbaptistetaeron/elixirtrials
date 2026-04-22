@@ -147,7 +147,7 @@
     /* ─── NAV ─── */
     nav {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 30px var(--mg);
+      padding: 30px 60px;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -158,18 +158,22 @@
       font-family: "RHPhonic", sans-serif;
       font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase;
       background: #000; color: var(--white);
-      padding: 8px 20px;
-      border-radius: 6px;
+      padding: 0 20px;
+      border-radius: 0;
       display: inline-flex; align-items: center;
+      height: 36px;
+      box-sizing: border-box;
     }
     .nav-links { display: flex; gap: 10px; list-style: none; }
     .nav-links a {
       font-family: "RHPhonic", sans-serif;
       font-size: 13px; letter-spacing: 0.03em;
       background: var(--white); color: #1a1a1a;
-      padding: 8px 20px;
+      padding: 0 20px;
       border-radius: 6px;
-      opacity: 1;
+      display: inline-flex; align-items: center;
+      height: 36px;
+      box-sizing: border-box;
     }
     .nav-links a:hover { background: #eee; }
 
