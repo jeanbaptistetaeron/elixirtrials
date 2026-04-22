@@ -1,0 +1,302 @@
+/* ============================================================
+   ELIXIRTRIALS — MAIN STYLES
+   Imports tokens.css for all values.
+   ============================================================ */
+
+/* ── RESET ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* ── BASE ───────────────────────────────────────────────────── */
+html { background: var(--color-bg); }
+
+body {
+  background:  var(--color-bg);
+  font-family: var(--font-display);
+  font-size:   var(--type-size);
+  line-height: var(--type-leading);
+  letter-spacing: var(--type-tracking);
+  color:       var(--color-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ────────────────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: var(--color-bg);
+}
+
+.nav-logo {
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: var(--color-white);
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-white);
+}
+
+/* ── STACK (mobile-first) ───────────────────────────────────── */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mobile-gap);
+  padding-top: 44px; /* nav height */
+}
+
+/* ── CARD BASE ──────────────────────────────────────────────── */
+.card {
+  position: relative;
+  width: var(--mobile-card-w);
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--color-bg-card-dark);
+}
+
+.card--dark  { background: var(--color-bg-card-dark); color: var(--color-white); }
+.card--light { background: var(--color-bg-card-light); color: var(--color-text-primary); }
+.card--accent { background: var(--color-accent); color: var(--color-text-primary); }
+.card--accent-full { background: var(--color-accent); color: var(--color-text-primary); }
+
+/* ── CARD INNER ─────────────────────────────────────────────── */
+.card__inner {
+  position: relative;
+  z-index: 2;
+  padding: var(--card-pad);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+}
+
+.card__inner--top-left {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.card__inner--center {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* ── CARD VISUAL (full-bleed background image) ──────────────── */
+.card__visual {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── SPLIT CARD ─────────────────────────────────────────────── */
+/* On mobile: stacks vertically, each half is its own 3:4 block */
+.card--split {
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: auto;           /* overrides 3:4 — two halves each keep ratio */
+  height: auto;
+}
+
+.card__half {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  position: relative;
+  overflow: hidden;
+}
+
+.card__half--left  { border-bottom: 0.5px solid rgba(255,255,255,0.1); }
+
+/* ── TYPOGRAPHY WITHIN CARDS ────────────────────────────────── */
+.card p {
+  font-family: var(--font-display);
+  font-size:   var(--type-size);
+  line-height: var(--type-leading);
+  letter-spacing: var(--type-tracking);
+}
+
+.stat {
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.phase-label {
+  font-family: var(--font-body) !important;
+  font-size: 12px !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.team-name {
+  font-size: var(--type-size);
+}
+
+.team-title {
+  font-family: var(--font-body) !important;
+  font-size: 13px !important;
+  color: var(--color-text-muted);
+}
+
+.team-photo {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 4px;
+  margin: 8px 0;
+}
+
+.team-bio {
+  font-family: var(--font-body) !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  color: var(--color-text-muted);
+}
+
+/* ── LIST ───────────────────────────────────────────────────── */
+.card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+/* ── CTAs ───────────────────────────────────────────────────── */
+.cta {
+  display: inline-block;
+  margin-top: auto;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-accent);
+  border-bottom: 0.5px solid var(--color-accent);
+  padding-bottom: 2px;
+}
+
+.email-cta {
+  font-family: var(--font-display);
+  font-size: var(--type-size);
+  line-height: var(--type-leading);
+  letter-spacing: var(--type-tracking);
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-text-primary);
+  padding-bottom: 4px;
+}
+
+/* ── FOOTER ─────────────────────────────────────────────────── */
+.footer {
+  padding: 40px 30px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer__brand {
+  font-family: var(--font-display);
+  font-size: var(--type-size);
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.footer__legal {
+  font-family: var(--font-body);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* ── TABLET ─────────────────────────────────────────────────── */
+@media (min-width: 481px) and (max-width: 1023px) {
+  .stack { gap: 20px; padding: 64px 20px 0; }
+
+  .card {
+    width: 100%;
+    border-radius: var(--card-radius-sm);
+  }
+
+  .card--split {
+    flex-direction: row;
+    aspect-ratio: 3 / 4;
+    height: auto;
+  }
+
+  .card__half {
+    width: 50%;
+    aspect-ratio: auto;
+    height: 100%;
+  }
+
+  .card__half--left { border-bottom: none; border-right: 0.5px solid rgba(255,255,255,0.1); }
+}
+
+/* ── DESKTOP ────────────────────────────────────────────────── */
+@media (min-width: 1024px) {
+  body { padding: 0 var(--desktop-margin); }
+
+  .nav { padding: 16px var(--desktop-margin); }
+
+  .stack {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--desktop-gutter);
+    padding-top: 60px;
+    max-width: var(--desktop-max);
+    margin: 0 auto;
+  }
+
+  /* All cards span 3 cols by default */
+  .card {
+    grid-column: span 3;
+    width: 100%;
+    border-radius: var(--card-radius-lg);
+  }
+
+  /* Full-width cards span 6 cols */
+  .card--hero,
+  .card--split,
+  .card--accent-full {
+    grid-column: span 6;
+  }
+
+  .card--split {
+    flex-direction: row;
+    aspect-ratio: 3 / 4;
+    height: auto;
+  }
+
+  .card__half {
+    width: 50%;
+    aspect-ratio: auto;
+    height: 100%;
+  }
+
+  .card__half--left { border-bottom: none; border-right: 0.5px solid rgba(255,255,255,0.1); }
+}

@@ -1,0 +1,5 @@
+Drop your .woff2 font files here.
+
+Expected filenames (update css/tokens.css if yours differ):
+- MartinaPlan-Regular.woff2
+- RHPhonic-Regular.woff2

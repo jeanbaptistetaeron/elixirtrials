@@ -1,0 +1,85 @@
+/* ============================================================
+   ELIXIRTRIALS — DESIGN TOKENS
+   This is the single source of truth.
+   Change a value here and it cascades everywhere.
+   ============================================================ */
+
+/* FONTS
+   Drop your .woff2 files into /fonts/
+   ------------------------------------------------------------ */
+@font-face {
+  font-family: "Martina Plantijn";
+  src: url("../fonts/MartinaPlan-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RH Phonic";
+  src: url("../fonts/RHPhonic-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+
+  /* ── COLORS ─────────────────────────────────────────────── */
+  --color-bg:           #000000;
+  --color-bg-card-dark: #1C180D;
+  --color-bg-card-light:#D4CFC9;
+  --color-accent:       #CCFF00;
+  --color-white:        #FFFFFF;
+  --color-text-primary: #1C180D;
+  --color-text-muted:   #8B8784;
+
+  /* ── TYPOGRAPHY ─────────────────────────────────────────── */
+  --font-display:       "Martina Plantijn", serif;
+  --font-body:          "RH Phonic", sans-serif;
+
+  /* ── TYPE SCALE (mobile-first) ──────────────────────────── */
+  --type-size:          25px;
+  --type-leading:       30px;
+  --type-tracking:      -0.01em;   /* -1% letter-spacing */
+
+  /* ── LAYOUT — DESKTOP ───────────────────────────────────── */
+  --desktop-max:        1728px;
+  --desktop-margin:     30px;
+  --desktop-gutter:     15px;
+  --desktop-cols:       6;
+  --desktop-col-w:      calc(
+                          (min(100vw, var(--desktop-max))
+                          - 2 * var(--desktop-margin)
+                          - 5 * var(--desktop-gutter))
+                          / 6
+                        );
+
+  /* ── LAYOUT — TABLET ────────────────────────────────────── */
+  --tablet-max:         768px;
+  --tablet-margin:      20px;
+  --tablet-gutter:      10px;
+  --tablet-cols:        2;
+
+  /* ── LAYOUT — MOBILE ────────────────────────────────────── */
+  --mobile-margin:      0px;
+  --mobile-gap:         60px;       /* gap between stacked cards */
+  --mobile-card-w:      100vw;
+  --mobile-card-h:      calc(100vw * 4 / 3);
+
+  /* ── CARD INTERNALS ─────────────────────────────────────── */
+  --card-pad:           30px;
+  --card-gap:           15px;
+  --card-radius-sm:     12px;
+  --card-radius-lg:     16px;
+  --card-ratio:         4 / 3;     /* width:height = 3:4 → aspect-ratio: 3/4 */
+
+  /* ── DESKTOP CARD WIDTHS ────────────────────────────────── */
+  --card-1col-w:  var(--desktop-col-w);
+  --card-3col-w:  calc(3 * var(--desktop-col-w) + 2 * var(--desktop-gutter));
+  --card-6col-w:  calc(6 * var(--desktop-col-w) + 5 * var(--desktop-gutter));
+
+  /* ── DESKTOP CARD HEIGHTS (3:4 ratio) ───────────────────── */
+  --card-3col-h:  calc(var(--card-3col-w) * 4 / 3);
+  --card-6col-h:  calc(var(--card-6col-w) * 4 / 3);
+}

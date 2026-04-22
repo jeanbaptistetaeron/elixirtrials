@@ -1,0 +1,13 @@
+Drop illustration and photo files here.
+
+Expected filenames (update index.html src attributes if yours differ):
+- hero.png
+- stats.png
+- broken.png
+- maria.png
+- system.png
+- magic.png
+- cauldron.png
+- rebuilding.png
+- heather.jpg
+- noah.jpg
