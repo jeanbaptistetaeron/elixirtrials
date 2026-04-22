@@ -147,7 +147,14 @@
     /* ─── NAV ─── */
     nav {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 0;
+      padding: 20px var(--mg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      margin: 0 calc(-1 * var(--mg));
     }
     .nav-logo {
       font-family: "RHPhonic", sans-serif;
