@@ -253,6 +253,9 @@
     /* ─── EMAIL ─── */
     .email-big { font-size: clamp(14px, 2vw, 26px); letter-spacing: -.01em; }
 
+    .mob-only  { display: none; }
+    .desk-only { display: inline; }
+
     /* ─── MOBILE ─── */
     @media (max-width: 768px) {
       :root { --mg: 0px; --gu: 0px; }
@@ -269,6 +272,9 @@
       .t-martina { font-size: 25px; line-height: calc(30/25); }
       .hero-center p { font-size: 25px; line-height: calc(30/25); }
       .t-phonic { font-size: 12.5px; line-height: calc(15/12.5); }
+      .contact-img { transform: scale(1.5); transform-origin: center center; }
+      .mob-only  { display: inline; }
+      .desk-only { display: none; }
     }
 
   </style>
@@ -382,7 +388,7 @@
     <div class="card c6 bg-accent">
       <div class="ct cc">
         <p class="t-martina" style="color:#1C180D;">
-          Trials belong where patients are.
+          Trials belong<br class="mob-only"><span class="desk-only"> </span>where patients are.
         </p>
       </div>
       <div style="position:absolute; bottom:30px; left:0; right:0; display:flex; justify-content:center; text-align:center; z-index:2;">
@@ -500,8 +506,8 @@
       <div class="scrim"></div>
       <div class="ct cc">
         <p class="t-martina" style="max-width:460px;">
-          Rebuilding clinical trials around patients.<br>
-          Trials come to the patient. Not the other way around.
+          Rebuilding clinical trials<span class="desk-only"> </span><br class="mob-only">around patients.<br>
+          Trials come to the patient.<span class="desk-only"> </span><br class="mob-only">Not the other way around.
         </p>
       </div>
     </div>
@@ -545,7 +551,7 @@
   <!-- CONTACT CTA 6-col -->
   <div class="row">
     <div class="card c6">
-      <img class="card-media" src="images/contact.jpg" alt="" style="transform:scale(1.5); transform-origin:center center;">
+      <img class="card-media contact-img" src="images/contact.jpg" alt="">
       <div class="scrim"></div>
       <div class="ct cc">
         <a href="mailto:heather@elixirtrials.com" class="email-big t-martina">heather@elixirtrials.com</a>
