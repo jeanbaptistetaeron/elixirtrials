@@ -5,432 +5,200 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ElixirTrials</title>
   <style>
-    /* =============================================
-       DESIGN TOKENS
-    ============================================= */
-    :root {
-      --bg:           #1C180D;
-      --accent:       #CCFF00;
-      --beige:        #D4CFC9;
-      --white:        #FFFFFF;
-      --black:        #000000;
-      --text-primary: #1C180D;
-      --text-light:   #FFFFFF;
-      --text-muted:   #8B8784;
 
-      --font-display: "MartinaPlan", "Georgia", serif;
-      --font-body:    "MartinaPlan", "Georgia", serif;
+    /* ─────────────────────────────────────────────
+       TOKENS
+    ───────────────────────────────────────────── */
+    :root {
+      --bg:     #1C180D;
+      --accent: #CCFF00;
+      --white:  #FFFFFF;
+      --dark:   #111111;
+
+      --font: "MartinaPlan", Georgia, serif;
+      --fs-body:  13px;
+      --fs-small: 11px;
+      --fs-stat:  42px;
+      --fs-head:  22px;
+      --lh:       1.55;
+      --ls-caps:  0.07em;
 
       /* Grid */
-      --margin:  30px;
-      --gutter:  15px;
-      --cols:    6;
-      --max-w:   1728px;
+      --mg:    30px;
+      --gu:    15px;
+      --col-w: calc((100vw - 2 * var(--mg) - 5 * var(--gu)) / 6);
 
-      --col-w: calc((min(100vw, var(--max-w)) - 2 * var(--margin) - 5 * var(--gutter)) / 6);
+      /* Widths */
+      --w2: calc(2 * var(--col-w) + 1 * var(--gu));
+      --w3: calc(3 * var(--col-w) + 2 * var(--gu));
+      --w6: calc(6 * var(--col-w) + 5 * var(--gu));
 
-      --card-3:   calc(3 * var(--col-w) + 2 * var(--gutter));
-      --card-6:   calc(6 * var(--col-w) + 5 * var(--gutter));
-      --card-h-3: calc(var(--card-3) * 4 / 3);
-      --card-h-6: calc(var(--card-6) * 4 / 3);
+      /* Universal height: 2-col at 3:4 */
+      --h: calc(var(--w2) * 4 / 3);
 
-      /* Typography */
-      --fs-nav:     13px;
-      --fs-body:    13px;
-      --fs-small:   11px;
-      --fs-stat:    36px;
-      --fs-display: 28px;
-      --fs-hero:    13px;
-      --lh:         1.4;
-      --ls-caps:    0.08em;
+      /* Radius */
+      --r: 15px;
     }
 
-    /* =============================================
-       FONTS
-    ============================================= */
     @font-face {
       font-family: "MartinaPlan";
       src: url("fonts/MartinaPlan-Regular.woff2") format("woff2");
       font-weight: 400;
-      font-style: normal;
     }
 
-    /* =============================================
-       RESET & BASE
-    ============================================= */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font);
+      font-size: var(--fs-body);
+      line-height: var(--lh);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
 
-    html { background: var(--bg); color: var(--text-light); font-family: var(--font-body); font-size: var(--fs-body); line-height: var(--lh); -webkit-font-smoothing: antialiased; }
-
-    body { background: var(--bg); }
-
-    /* =============================================
-       LAYOUT PRIMITIVES
-    ============================================= */
-    .wrap {
-      max-width: var(--max-w);
+    /* ─── PAGE ─── */
+    .page {
+      max-width: 1728px;
       margin: 0 auto;
-      padding: 0 var(--margin);
-    }
-
-    /* Row of cards with gutter */
-    .row {
-      display: flex;
-      gap: var(--gutter);
-      width: 100%;
-    }
-
-    /* Full-width card (6-col) */
-    .card-6 {
-      width: var(--card-6);
-      height: var(--card-h-6);
-      flex-shrink: 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Half card (3-col) */
-    .card-3 {
-      width: var(--card-3);
-      height: var(--card-h-3);
-      flex-shrink: 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* 2-col card (for stats) */
-    .card-2 {
-      flex: 1;
-      height: var(--card-h-3);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Image fills */
-    .card-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    video.card-img {
-      object-fit: cover;
-    }
-
-    /* Dark overlay */
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-    }
-    .overlay-dark {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-    }
-
-    /* Text layer always on top */
-    .card-text {
-      position: absolute;
-      inset: 0;
-      padding: 30px;
+      padding: 0 var(--mg);
       display: flex;
       flex-direction: column;
+      gap: var(--gu);
+    }
+
+    /* ─── ROW ─── */
+    .row { display: flex; gap: var(--gu); }
+
+    /* ─── CARDS ─── */
+    .card {
+      height: var(--h);
+      border-radius: var(--r);
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .c2 { flex: 1; }           /* equal-width, fills row */
+    .c3 { width: var(--w3); }
+    .c6 { width: var(--w6); }
+
+    .card-media {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .scrim       { position: absolute; inset: 0; background: rgba(0,0,0,.38); }
+    .scrim-heavy { position: absolute; inset: 0; background: rgba(0,0,0,.54); }
+
+    .ct {
+      position: absolute; inset: 0;
+      padding: 30px;
+      display: flex; flex-direction: column;
       z-index: 2;
     }
-    .card-text.top-left   { justify-content: flex-start; align-items: flex-start; }
-    .card-text.centered   { justify-content: center; align-items: center; text-align: center; }
-    .card-text.bottom-left { justify-content: flex-end; align-items: flex-start; }
+    .tl { justify-content: flex-start; align-items: flex-start; }
+    .cc { justify-content: center;     align-items: center;     text-align: center; }
 
-    /* Section spacing */
-    section { padding: 0 var(--margin); max-width: var(--max-w); margin: 0 auto; }
+    /* bg helpers */
+    .bg-dark   { background: var(--dark); }
+    .bg-bg     { background: var(--bg); }
+    .bg-accent { background: var(--accent); }
 
-    /* Gap between rows */
-    .gap { height: var(--gutter); }
-    .gap-lg { height: 30px; }
+    /* ─── TYPE ─── */
+    .t-caps  { font-size: var(--fs-small); letter-spacing: var(--ls-caps); text-transform: uppercase; opacity: .55; }
+    .t-stat  { font-size: var(--fs-stat);  line-height: 1.05; }
+    .t-head  { font-size: var(--fs-head);  line-height: 1.2; }
+    .t-body  { font-size: var(--fs-body);  line-height: var(--lh); }
+    .t-small { font-size: var(--fs-small); line-height: 1.55; }
+    .dim     { opacity: .65; }
+    .dark-c  { color: var(--bg); }
 
-    /* =============================================
-       NAV
-    ============================================= */
+    /* ─── NAV ─── */
     nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 22px var(--margin);
-      max-width: var(--max-w);
-      margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0;
     }
-
     .nav-logo {
-      font-size: var(--fs-nav);
-      letter-spacing: var(--ls-caps);
-      text-transform: uppercase;
-      color: var(--text-light);
-      border: 1px solid rgba(255,255,255,0.4);
-      padding: 5px 10px;
-      font-family: var(--font-display);
+      font-size: var(--fs-small); letter-spacing: var(--ls-caps); text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,.35); padding: 5px 9px;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: var(--fs-nav);
-      letter-spacing: var(--ls-caps);
-      text-transform: uppercase;
-      color: var(--text-light);
-      text-decoration: none;
-      opacity: 0.8;
-    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: var(--fs-small); letter-spacing: var(--ls-caps); text-transform: uppercase; opacity: .7; }
     .nav-links a:hover { opacity: 1; }
 
-    /* =============================================
-       TYPOGRAPHY HELPERS
-    ============================================= */
-    .t-caps {
-      font-size: var(--fs-small);
-      letter-spacing: var(--ls-caps);
-      text-transform: uppercase;
-      opacity: 0.6;
-    }
-
-    .t-stat {
-      font-size: var(--fs-stat);
-      line-height: 1.1;
-      font-family: var(--font-display);
-    }
-
-    .t-display {
-      font-size: var(--fs-display);
-      line-height: 1.2;
-      font-family: var(--font-display);
-    }
-
-    .t-body {
-      font-size: var(--fs-body);
-      line-height: 1.5;
-    }
-
-    .t-small {
-      font-size: var(--fs-small);
-      line-height: 1.5;
-      opacity: 0.7;
-    }
-
-    /* =============================================
-       HERO
-    ============================================= */
-    .hero-card {
+    /* ─── HERO ─── */
+    .hero {
+      width: 100%; height: var(--h);
+      border-radius: var(--r);
       background: var(--bg);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-start;
-    }
-
-    /* =============================================
-       STATS ROW
-    ============================================= */
-    .stat-label {
-      font-size: var(--fs-small);
-      line-height: 1.4;
-      opacity: 0.75;
-      margin-top: 8px;
-      max-width: 200px;
-    }
-
-    /* =============================================
-       ACCENT / YELLOW CARD
-    ============================================= */
-    .card-accent {
-      background: var(--accent);
-      color: var(--text-primary);
-    }
-
-    /* =============================================
-       BULLET LIST
-    ============================================= */
-    .feature-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
-    }
-    .feature-list li {
-      font-size: var(--fs-small);
-      line-height: 1.5;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
-    }
-    .feature-list li:last-child { border-bottom: none; }
-
-    /* Dark bg feature list */
-    .feature-list.dark li { border-bottom-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.75); }
-
-    /* =============================================
-       PHASE DIAGRAM
-    ============================================= */
-    .phase-diagram {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
       padding: 30px;
-      height: 100%;
+      display: flex; flex-direction: column; justify-content: center;
     }
-    .phase-node {
-      width: 110px;
-      padding: 8px 14px;
-      border: 1px solid rgba(255,255,255,0.4);
-      font-size: 10px;
-      text-align: center;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .phase-line {
-      width: 1px;
-      height: 20px;
-      background: rgba(255,255,255,0.3);
-    }
+    .hero p { font-size: var(--fs-body); line-height: 1.7; opacity: .82; max-width: 380px; }
 
-    /* =============================================
-       FOOTER
-    ============================================= */
-    footer {
-      padding: 50px var(--margin) 40px;
-      max-width: var(--max-w);
-      margin: 0 auto;
+    /* ─── FEATURE LIST ─── */
+    .flist { list-style: none; margin-top: 24px; }
+    .flist li {
+      font-size: var(--fs-small); line-height: 1.5; opacity: .72;
+      padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.1);
     }
+    .flist li:last-child { border-bottom: none; }
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 2fr;
-      gap: 40px;
-      border-top: 1px solid rgba(255,255,255,0.15);
-      padding-top: 30px;
-    }
-
-    .footer-col-title {
-      font-size: var(--fs-small);
-      letter-spacing: var(--ls-caps);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      opacity: 0.5;
-    }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: var(--fs-small); }
-    .footer-links a:hover { color: var(--white); }
-
-    .footer-legal {
-      font-size: 10px;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.35);
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding-top: 40px;
-      font-size: 10px;
-      color: rgba(255,255,255,0.3);
-    }
-    .footer-bottom .logo-lg {
-      font-size: 22px;
-      letter-spacing: 0.02em;
-      color: rgba(255,255,255,0.15);
-      font-family: var(--font-display);
-    }
-
-    /* =============================================
-       TALK-TO-US LINK
-    ============================================= */
     .cta-link {
-      display: inline-block;
-      margin-top: 20px;
-      font-size: var(--fs-small);
-      letter-spacing: var(--ls-caps);
-      text-transform: uppercase;
-      color: var(--text-light);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.4);
-      padding-bottom: 2px;
+      margin-top: auto; align-self: flex-start;
+      font-size: var(--fs-small); letter-spacing: var(--ls-caps); text-transform: uppercase;
+      opacity: .55; border-bottom: 1px solid rgba(255,255,255,.25); padding-bottom: 2px;
     }
-    .cta-link.dark { color: var(--text-primary); border-bottom-color: rgba(0,0,0,0.4); }
+    .cta-link:hover { opacity: 1; }
 
-    /* =============================================
-       DIVIDER
-    ============================================= */
-    .v-divider {
-      position: absolute;
-      left: 50%;
-      top: 30px;
-      bottom: 30px;
-      width: 1px;
-      background: rgba(255,255,255,0.15);
-      z-index: 2;
+    /* ─── PHASE DIAGRAM ─── */
+    .phase-diagram { display: flex; flex-direction: column; align-items: center; }
+    .pnode {
+      border: 1px solid rgba(255,255,255,.3); padding: 7px 16px;
+      font-size: 10px; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap;
     }
+    .pline { width: 1px; height: 22px; background: rgba(255,255,255,.22); }
 
-    /* =============================================
-       CONTACT CTA
-    ============================================= */
-    .email-display {
-      font-size: clamp(16px, 2.5vw, 32px);
-      font-family: var(--font-display);
-      letter-spacing: -0.01em;
-      color: var(--white);
-      text-decoration: none;
+    /* ─── FOOTER ─── */
+    .footer-wrap { padding: 36px 0 50px; }
+    .footer-top {
+      display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 40px;
+      border-top: 1px solid rgba(255,255,255,.1); padding-top: 26px;
     }
-    .email-display:hover { opacity: 0.8; }
+    .footer-col-label { font-size: var(--fs-small); letter-spacing: var(--ls-caps); text-transform: uppercase; opacity: .35; margin-bottom: 10px; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 7px; }
+    .footer-links a { font-size: var(--fs-small); opacity: .55; }
+    .footer-links a:hover { opacity: 1; }
+    .footer-legal { font-size: 10px; line-height: 1.7; opacity: .28; }
+    .footer-bottom { margin-top: 32px; display: flex; justify-content: space-between; }
+    .footer-bottom span { font-size: 10px; opacity: .22; }
 
-    /* =============================================
-       MOBILE
-    ============================================= */
+    /* ─── EMAIL ─── */
+    .email-big { font-size: clamp(14px, 2vw, 26px); letter-spacing: -.01em; }
+
+    /* ─── MOBILE ─── */
     @media (max-width: 768px) {
-      :root {
-        --margin: 0px;
-        --gutter: 0px;
-      }
-
-      body { background: var(--black); }
-
-      .wrap, section { padding: 0; max-width: 100%; }
-
-      nav { padding: 18px 20px; }
-
-      .row {
-        flex-direction: column;
-        gap: 0;
-      }
-
-      .card-6, .card-3, .card-2 {
-        width: 100vw;
-        height: calc(100vw * 4 / 3);
-        flex: none;
-      }
-
-      .card-text { padding: 20px; }
-
+      :root { --mg: 0px; --gu: 0px; }
+      body { background: #000; }
+      .row { flex-direction: column; gap: 0; }
+      .c2, .c3, .c6 { width: 100vw; height: calc(100vw * 4 / 3); flex: none; border-radius: 0; }
+      .card { border-radius: 0; }
       .row > * + * { margin-top: 60px; }
-
-      .gap, .gap-lg { display: none; }
-
-      footer { padding: 40px 20px; }
-      .footer-grid { grid-template-columns: 1fr; }
+      nav { padding: 18px 20px; }
+      .hero { width: 100vw; padding: 20px; border-radius: 0; }
+      .footer-top { grid-template-columns: 1fr; }
+      .page { gap: 60px; padding: 0; }
+      .footer-wrap { padding: 32px 20px 40px; }
     }
+
   </style>
 </head>
 <body>
 
-  <!-- ============ NAV ============ -->
+<div class="page">
+
+  <!-- NAV -->
   <nav>
     <span class="nav-logo">LXR</span>
     <ul class="nav-links">
@@ -439,337 +207,289 @@
     </ul>
   </nav>
 
-  <!-- ============ HERO ============ -->
-  <section>
-    <div class="row">
-      <div class="card-6" style="background:#1C180D;">
-        <div class="card-text top-left" style="justify-content:center;">
-          <p class="t-body" style="max-width:420px; opacity:0.85;">
-            Someone you love may need a clinical trial.<br>
-            Today, 88% of hospitals can't run trials.
-          </p>
+  <!-- HERO -->
+  <div class="row">
+    <div class="hero">
+      <p>
+        Someone you love may need a clinical trial.<br>
+        Today, 88% of hospitals can't run trials.<br>
+        That's not a gap.<br><br>
+        It's a wall.
+      </p>
+    </div>
+  </div>
+
+  <!-- STATS 3×2-col -->
+  <div class="row">
+
+    <div class="card c2" style="background:#0e0e0e;">
+      <img class="card-media" src="images/jerbosmans_1689254561_3146017743471635129_2126926476.jpg" alt="">
+      <div class="scrim"></div>
+      <div class="ct tl">
+        <p class="t-stat">80%</p>
+        <p class="t-small dim" style="margin-top:10px; max-width:170px;">of trials fail to meet enrollment targets.</p>
+      </div>
+    </div>
+
+    <div class="card c2" style="background:#0e0e0e;">
+      <img class="card-media" src="images/jerbosmans_1706724736_3292568191131982995_2126926476.jpg" alt="">
+      <div class="scrim"></div>
+      <div class="ct tl">
+        <p class="t-stat">$8M</p>
+        <p class="t-small dim" style="margin-top:10px; max-width:170px;">lost per day when trials are delayed.</p>
+      </div>
+    </div>
+
+    <div class="card c2" style="background:#0e0e0e;">
+      <img class="card-media" src="images/jerbosmans_1712843594_3343896889902993490_2126926476.jpg" alt="">
+      <div class="scrim"></div>
+      <div class="ct tl">
+        <p class="t-stat">88%</p>
+        <p class="t-small dim" style="margin-top:10px; max-width:170px;">of U.S. hospitals lack infrastructure to run clinical trials.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BROKEN SYSTEM 6-col -->
+  <div class="row">
+    <div class="card c6">
+      <img class="card-media" src="images/system.jpg" alt="">
+      <div class="scrim"></div>
+      <div class="ct cc">
+        <p class="t-head" style="max-width:420px;">
+          The system isn't inefficient.<br>
+          It's structurally broken.<br><br>
+          For most patients,<br>
+          clinical trials are out of reach.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARIA 6-col -->
+  <div class="row">
+    <div class="card c6 bg-dark">
+      <video class="card-media" src="images/maria.mp4" autoplay muted loop playsinline></video>
+      <div class="scrim-heavy"></div>
+      <div class="ct cc">
+        <p class="t-body" style="max-width:440px; opacity:.86; line-height:1.8;">
+          Maria drove 4 hours each way.<br>
+          Twice a week. For six months.<br>
+          Then she stopped.<br><br>
+          Not because she chose to.<br>
+          Because the system made it impossible.<br>
+          The trial lost a patient.<br>
+          Science lost a data point.<br>
+          Maria's disease didn't wait.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SYSTEM FAILED 6-col -->
+  <div class="row">
+    <div class="card c6">
+      <img class="card-media" src="images/78c4a918-09b1-4dfa-9973-48d58c0800cc.avif" alt="">
+      <div class="scrim"></div>
+      <div class="ct cc">
+        <p class="t-head" style="max-width:400px;">
+          Maria didn't fail. The trial didn't fail.<br>
+          The system failed.
+        </p>
+        <p class="t-small dim" style="margin-top:16px; max-width:340px;">
+          It's time to fix the broken system.<br>
+          Clinical trial access for all is now a reality.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRIALS BELONG — YELLOW 6-col -->
+  <div class="row">
+    <div class="card c6 bg-accent">
+      <div class="ct cc">
+        <p class="t-head dark-c" style="max-width:460px;">
+          Trials belong where patients are.
+        </p>
+        <p class="t-body dark-c" style="margin-top:14px; opacity:.6; max-width:360px;">
+          The trial comes to the patient.<br>
+          Not the other way around.<br>
+          That's the magic of ElixirTrials.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- YOU TREAT / YOU BRING 3+3 -->
+  <div class="row">
+
+    <div class="card c3 bg-dark">
+      <div class="ct tl">
+        <p class="t-head">You treat<br>the patients.</p>
+        <ul class="flist">
+          <li>Zero upfront cost to site.</li>
+          <li>100% of trial revenue retained by site.</li>
+          <li>Turnkey infrastructure and staffing support.</li>
+          <li>AI-powered workflow.</li>
+          <li>Access to a steady pipeline of clinical trials.</li>
+          <li>New revenue stream and elevated standard of care.</li>
+        </ul>
+        <a href="#" class="cta-link">Talk to us.</a>
+      </div>
+    </div>
+
+    <div class="card c3 bg-dark">
+      <div class="ct tl">
+        <p class="t-head">You bring<br>the science.</p>
+        <ul class="flist">
+          <li>We unlock access to previously unreachable patients at scale.</li>
+          <li>Accelerated enrollment across a unified network.</li>
+          <li>Scaled access to diverse, underrepresented patients.</li>
+          <li>One contract, one network, simplified execution.</li>
+          <li>Standardized, regulatory-grade data across all sites.</li>
+          <li>Rapid study start-up with pre-enabled infrastructure.</li>
+          <li>Predictable delivery through centralized operations.</li>
+        </ul>
+        <a href="#" class="cta-link">Talk to us.</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CAULDRON 6-col -->
+  <div class="row">
+    <div class="card c6">
+      <img class="card-media" src="images/cauldron.jpg" alt="">
+      <div class="scrim"></div>
+      <div class="ct cc">
+        <p class="t-caps" style="margin-bottom:16px;">Cauldron — Clinical Trial OS</p>
+        <p class="t-head" style="max-width:420px;">
+          The humans make the decisions.<br>
+          The AI does the busy work.
+        </p>
+        <p class="t-body dim" style="margin-top:14px; max-width:340px;">
+          Scheduling, documentation, compliance, reporting —<br>
+          all clinical trial workflows. Handled.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 1 / PHASE 2 3+3 -->
+  <div class="row">
+
+    <div class="card c3 bg-dark">
+      <!-- text: left half -->
+      <div style="position:absolute;inset:0;width:55%;padding:30px;display:flex;flex-direction:column;z-index:2;">
+        <p class="t-caps" style="margin-bottom:18px;">Phase 1 — Build</p>
+        <ul class="flist">
+          <li>Philanthropic funding builds the infrastructure to make sites trial-ready.</li>
+          <li>ElixirTrials handles all site activities for clinical trials.</li>
+          <li>Staffing, technology, regulatory, training — all handled.</li>
+          <li>Zero upfront cost to the hospital.</li>
+        </ul>
+        <p class="t-small" style="margin-top:auto;opacity:.35;">Philanthropy</p>
+      </div>
+      <!-- diagram: right half -->
+      <div style="position:absolute;right:0;top:0;width:45%;height:100%;display:flex;align-items:center;justify-content:center;z-index:2;border-left:1px solid rgba(255,255,255,.07);">
+        <div class="phase-diagram">
+          <div class="pnode">Sponsor</div>
+          <div class="pline"></div>
+          <div class="pnode">ElixirTrials</div>
+          <div class="pline"></div>
+          <div class="pnode">Site</div>
+          <div class="pline"></div>
+          <div class="pnode">Patients</div>
         </div>
       </div>
     </div>
-  </section>
 
-  <div class="gap"></div>
-
-  <!-- ============ STATS ROW ============ -->
-  <section>
-    <div class="row">
-
-      <div class="card-2" style="background:#0e0e0e;">
-        <img class="card-img" src="images/jerbosmans_1689254561_3146017743471635129_2126926476.jpg" alt="">
-        <div class="overlay"></div>
-        <div class="card-text top-left">
-          <p class="t-stat">80%</p>
-          <p class="stat-label">of trials fail to meet enrollment targets.</p>
-        </div>
+    <div class="card c3 bg-dark">
+      <div class="ct tl">
+        <p class="t-caps" style="margin-bottom:18px;">Phase 2 — Scale</p>
+        <ul class="flist">
+          <li>Sponsor funded trials run through the network.</li>
+          <li>Sites keep the rate card revenue.</li>
+          <li>ElixirTrials provides operations, technology, and network access.</li>
+          <li>One philanthropic investment creates permanent self-sustaining capacity.</li>
+        </ul>
       </div>
-
-      <div class="card-2" style="background:#111;">
-        <img class="card-img" src="images/jerbosmans_1706724736_3292568191131982995_2126926476.jpg" alt="">
-        <div class="overlay"></div>
-        <div class="card-text top-left">
-          <p class="t-stat">$8M</p>
-          <p class="stat-label">lost per day when trials are delayed.</p>
-        </div>
-      </div>
-
-      <div class="card-2" style="background:#0a0a0a;">
-        <img class="card-img" src="images/jerbosmans_1712843594_3343896889902993490_2126926476.jpg" alt="">
-        <div class="overlay"></div>
-        <div class="card-text top-left">
-          <p class="t-stat">88%</p>
-          <p class="stat-label">of U.S. hospitals lack infrastructure to run clinical trials.</p>
-        </div>
-      </div>
-
     </div>
-  </section>
 
-  <div class="gap"></div>
+  </div>
 
-  <!-- ============ BROKEN SYSTEM ============ -->
-  <section>
-    <div class="row">
-      <div class="card-6">
-        <img class="card-img" src="images/system.jpg" alt="">
-        <div class="overlay"></div>
-        <div class="card-text centered">
-          <p class="t-display" style="max-width:500px;">
-            The system isn't inefficient.<br>
-            It's structurally broken.<br><br>
-            For most patients,<br>
-            clinical trials are out of reach.
-          </p>
+  <!-- REBUILDING 6-col -->
+  <div class="row">
+    <div class="card c6">
+      <img class="card-media" src="images/rebuilding.jpg" alt="">
+      <div class="scrim"></div>
+      <div class="ct cc">
+        <p class="t-head" style="max-width:460px;">
+          Rebuilding clinical trials around patients.<br>
+          Trials come to the patient. Not the other way around.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEAM 3+3 -->
+  <div class="row">
+
+    <div class="card c3" style="background:#1a1a1a;">
+      <img class="card-media" src="images/heather.jpg" alt="Heather Grey" style="filter:grayscale(100%);object-position:center top;">
+      <div class="scrim-heavy"></div>
+      <div class="ct tl">
+        <p class="t-body">Heather Grey</p>
+        <p class="t-caps" style="margin-top:3px;">CEO</p>
+        <div style="margin-top:auto;display:flex;flex-direction:column;gap:4px;">
+          <p class="t-small dim">15+ years building and scaling clinical trial businesses.</p>
+          <p class="t-small dim">Former Tempus TIME Trial builder.</p>
+          <p class="t-small dim">Led large scale pharma partnerships.</p>
+          <p class="t-small dim">Global leader of clinical trial and Real World Data teams.</p>
         </div>
       </div>
     </div>
-  </section>
 
-  <div class="gap"></div>
-
-  <!-- ============ MARIA ============ -->
-  <section>
-    <div class="row">
-      <div class="card-6" style="background:#111;">
-        <video class="card-img" src="images/maria.mp4" autoplay muted loop playsinline></video>
-        <div class="overlay-dark"></div>
-        <div class="card-text centered">
-          <p class="t-body" style="max-width:480px; line-height:1.8;">
-            Maria drove 4 hours each way.<br>
-            Twice a week. For six months.<br>
-            Then she stopped.<br><br>
-            Not because she chose to.<br>
-            Because the system made it impossible.<br>
-            The trial lost a patient.<br>
-            Science lost a data point.<br>
-            Maria's disease didn't wait.
-          </p>
+    <div class="card c3" style="background:#1a1a1a;">
+      <img class="card-media" src="images/noah.jpg" alt="Noah Dolev" style="filter:grayscale(100%);object-position:center top;">
+      <div class="scrim-heavy"></div>
+      <div class="ct tl">
+        <p class="t-body">Noah Dolev</p>
+        <p class="t-caps" style="margin-top:3px;">PhD, CTO</p>
+        <div style="margin-top:auto;display:flex;flex-direction:column;gap:4px;">
+          <p class="t-small dim">PhD, Computational Neuroscience.</p>
+          <p class="t-small dim">15+ years building AI products.</p>
+          <p class="t-small dim">6 startups.</p>
+          <p class="t-small dim">2 unicorns — Wix, Gong.</p>
         </div>
       </div>
     </div>
-  </section>
 
-  <div class="gap"></div>
+  </div>
 
-  <!-- ============ SYSTEM FAILED ============ -->
-  <section>
-    <div class="row">
-      <div class="card-6">
-        <img class="card-img" src="images/78c4a918-09b1-4dfa-9973-48d58c0800cc.avif" alt="">
-        <div class="overlay"></div>
-        <div class="card-text centered">
-          <p class="t-display" style="max-width:460px;">
-            Maria didn't fail. The trial didn't fail.<br>
-            The system failed.
-          </p>
-          <p class="t-body" style="margin-top:20px; opacity:0.7; max-width:400px;">
-            It's time to fix the broken system.<br>
-            Clinical trial access for all is now a reality.
-          </p>
-        </div>
+  <!-- CONTACT CTA 6-col -->
+  <div class="row">
+    <div class="card c6">
+      <img class="card-media" src="images/jerbosmans_1716834328_3377373594596342193_2126926476.jpg" alt="">
+      <div class="scrim"></div>
+      <div class="ct cc">
+        <a href="mailto:heather@elixirtrials.com" class="email-big">heather@elixirtrials.com</a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <div class="gap"></div>
-
-  <!-- ============ TRIALS BELONG — YELLOW ============ -->
-  <section>
-    <div class="row">
-      <div class="card-6 card-accent">
-        <div class="card-text centered">
-          <p class="t-display" style="color:var(--text-primary); max-width:500px;">
-            Trials belong where patients are.
-          </p>
-          <p class="t-body" style="color:var(--text-primary); margin-top:16px; opacity:0.7;">
-            The trial comes to the patient.<br>
-            Not the other way around.<br>
-            That's the magic of ElixirTrials.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="gap"></div>
-
-  <!-- ============ YOU TREAT / YOU BRING ============ -->
-  <section>
-    <div class="row">
-
-      <div class="card-3" style="background:#111;">
-        <div class="card-text top-left">
-          <p class="t-display" style="line-height:1.15;">You treat<br>the patients.</p>
-          <ul class="feature-list dark" style="margin-top:40px;">
-            <li>Zero upfront cost to site.</li>
-            <li>100% of trial revenue retained by site.</li>
-            <li>Turnkey infrastructure and staffing support.</li>
-            <li>AI-powered workflow.</li>
-            <li>Access to a steady pipeline of clinical trials.</li>
-            <li>New revenue stream and elevated standard of care.</li>
-          </ul>
-          <a href="#" class="cta-link" style="margin-top:auto;">Talk to us.</a>
-        </div>
-      </div>
-
-      <div class="card-3" style="background:#111;">
-        <div class="v-divider"></div>
-        <div class="card-text top-left">
-          <p class="t-display" style="line-height:1.15;">You bring<br>the science.</p>
-          <ul class="feature-list dark" style="margin-top:40px;">
-            <li>We unlock access to previously unreachable patients at scale.</li>
-            <li>Accelerated enrollment across a unified network.</li>
-            <li>Scaled access to diverse, underrepresented patients.</li>
-            <li>One contract, one network, simplified execution.</li>
-            <li>Standardized, regulatory-grade data across all sites.</li>
-            <li>Predictable delivery through centralized operations.</li>
-          </ul>
-          <a href="#" class="cta-link" style="margin-top:auto;">Talk to us.</a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="gap"></div>
-
-  <!-- ============ CAULDRON ============ -->
-  <section>
-    <div class="row">
-      <div class="card-6">
-        <img class="card-img" src="images/cauldron.jpg" alt="">
-        <div class="overlay"></div>
-        <div class="card-text centered">
-          <p class="t-caps" style="margin-bottom:20px; opacity:0.6;">Cauldron — Clinical Trial OS</p>
-          <p class="t-display" style="max-width:480px;">
-            The humans make the decisions.<br>
-            The AI does the busy work.
-          </p>
-          <p class="t-body" style="margin-top:16px; opacity:0.7; max-width:380px;">
-            Scheduling, documentation, compliance, reporting —<br>
-            all clinical trial workflows. Handled.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="gap"></div>
-
-  <!-- ============ PHASE 1 / PHASE 2 ============ -->
-  <section>
-    <div class="row">
-
-      <div class="card-3" style="background:#111;">
-        <div class="card-text top-left">
-          <p class="t-caps" style="margin-bottom:20px;">Phase 1 — Build</p>
-          <ul class="feature-list dark">
-            <li>Sponsor</li>
-            <li>Philanthropic funding builds the infrastructure to make sites trial ready.</li>
-            <li>ElixirTrials takes care of all site activities required for clinical trials.</li>
-            <li>Staffing, technology, regulatory, training... All handled.</li>
-            <li>Zero upfront cost to the hospital.</li>
-          </ul>
-          <p class="t-small" style="margin-top:auto;">Philanthropy</p>
-        </div>
-        <!-- Diagram (right sub-column) -->
-        <div style="position:absolute; right:0; top:0; width:45%; height:100%; display:flex; align-items:center; justify-content:center; z-index:2;">
-          <div class="phase-diagram">
-            <div class="phase-node">Sponsor</div>
-            <div class="phase-line"></div>
-            <div class="phase-node">ElixirTrials</div>
-            <div class="phase-line"></div>
-            <div class="phase-node">Site</div>
-            <div class="phase-line"></div>
-            <div class="phase-node">Patients</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card-3" style="background:#111;">
-        <div class="card-text top-left">
-          <p class="t-caps" style="margin-bottom:20px;">Phase 2 — Scale</p>
-          <ul class="feature-list dark">
-            <li>Sponsor funded trials run through the network.</li>
-            <li>Sites keep the rate card revenue.</li>
-            <li>ElixirTrials provides operations, technology, and network access.</li>
-            <li>One philanthropic investment creates permanent self-sustaining capacity.</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="gap"></div>
-
-  <!-- ============ REBUILDING ============ -->
-  <section>
-    <div class="row">
-      <div class="card-6">
-        <img class="card-img" src="images/rebuilding.jpg" alt="">
-        <div class="overlay"></div>
-        <div class="card-text centered">
-          <p class="t-display" style="max-width:520px;">
-            Rebuilding clinical trials around patients.<br>
-            Trials come to the patient. Not the other way around.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="gap"></div>
-
-  <!-- ============ TEAM ============ -->
-  <section>
-    <div class="row">
-
-      <div class="card-3" style="background:#222;">
-        <img class="card-img" src="images/heather.jpg" alt="Heather Grey" style="filter:grayscale(100%);">
-        <div class="overlay-dark"></div>
-        <div class="card-text top-left">
-          <p style="font-size:var(--fs-body); font-family:var(--font-display);">Heather Grey</p>
-          <p class="t-caps" style="margin-top:4px;">CEO</p>
-          <div style="margin-top:auto;">
-            <p class="t-small">15+ years building and scaling clinical trial businesses.</p>
-            <p class="t-small">Former Tempus TIME Trial builder.</p>
-            <p class="t-small">Led large scale pharma partnerships.</p>
-            <p class="t-small">Global leader of clinical trial and Real World Data teams.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="card-3" style="background:#222;">
-        <img class="card-img" src="images/noah.jpg" alt="Noah Dolev" style="filter:grayscale(100%);">
-        <div class="overlay-dark"></div>
-        <div class="card-text top-left">
-          <p style="font-size:var(--fs-body); font-family:var(--font-display);">Noah Dolev</p>
-          <p class="t-caps" style="margin-top:4px;">PhD, CTO</p>
-          <div style="margin-top:auto;">
-            <p class="t-small">PhD, Computational Neuroscience.</p>
-            <p class="t-small">15+ years building AI products.</p>
-            <p class="t-small">6 startups.</p>
-            <p class="t-small">2 unicorns — Wix, Gong.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="gap"></div>
-
-  <!-- ============ CONTACT CTA ============ -->
-  <section>
-    <div class="row">
-      <div class="card-6">
-        <img class="card-img" src="images/jerbosmans_1716834328_3377373594596342193_2126926476.jpg" alt="">
-        <div class="overlay"></div>
-        <div class="card-text centered">
-          <a href="mailto:heather@elixirtrials.com" class="email-display">heather@elixirtrials.com</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="gap-lg"></div>
-
-  <!-- ============ FOOTER ============ -->
-  <footer>
-    <div class="footer-grid">
+  <!-- FOOTER -->
+  <div class="footer-wrap">
+    <div class="footer-top">
       <div>
-        <p class="footer-col-title">ElixirTrials</p>
+        <p class="footer-col-label">ElixirTrials</p>
         <ul class="footer-links">
           <li><a href="#">Trials belong where patients are.</a></li>
         </ul>
       </div>
       <div>
-        <p class="footer-col-title">Contact</p>
+        <p class="footer-col-label">Contact</p>
         <ul class="footer-links">
           <li><a href="#">LinkedIn</a></li>
           <li><a href="#">Back to top ↗</a></li>
@@ -784,7 +504,12 @@
         </p>
       </div>
     </div>
-  </footer>
+    <div class="footer-bottom">
+      <span>ElixirTrials</span>
+      <span>Trials belong where patients are.</span>
+    </div>
+  </div>
 
+</div>
 </body>
 </html>
