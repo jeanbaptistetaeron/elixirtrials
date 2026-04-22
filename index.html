@@ -169,7 +169,6 @@
 
     /* ─── HERO ─── */
     .hero {
-      width: 100%; height: var(--h);
       border-radius: var(--r);
       background: #1C180D;
       position: relative;
@@ -259,11 +258,11 @@
       :root { --mg: 0px; --gu: 0px; }
       body { background: #000; }
       .row { flex-direction: column; gap: 0; }
-      .c2, .c3, .c6 { width: 100vw; height: calc(100vw * 4 / 3); flex: none; border-radius: 0; }
-      .card { border-radius: 0; }
+      .c2, .c3, .c6 { width: 100vw; height: calc(100vw * 4 / 3); flex: none; border-radius: 15px; }
+      .card { border-radius: 15px; }
       .row > * + * { margin-top: 60px; }
       nav { padding: 18px 20px; }
-      .hero { width: 100vw; padding: 20px; border-radius: 0; }
+      .hero { width: 100vw; height: calc(100vw * 4 / 3); border-radius: 15px; }
       .footer-top { grid-template-columns: 1fr; }
       .page { gap: 60px; padding: 0; }
       .footer-wrap { padding: 32px 20px 40px; }
@@ -286,7 +285,7 @@
 
   <!-- HERO -->
   <div class="row">
-    <div class="hero">
+    <div class="hero card c6">
       <div class="hero-center">
         <p>Someone you love may need a clinical trial.<br>Today, 88% of hospitals can't run trials.</p>
       </div>
@@ -327,7 +326,7 @@
     <div class="card c6">
       <img class="card-media" src="images/row_3.jpg" alt="">
       <div class="ct cc">
-        <p class="t-martina" style="max-width:500px;">For most patients, clinical trials are out of reach.</p>
+        <p class="t-martina" style="max-width:500px;">For most patients,<br>clinical trials are out of reach.</p>
       </div>
     </div>
   </div>
