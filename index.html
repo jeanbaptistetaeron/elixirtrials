@@ -45,14 +45,21 @@
       src: url("fonts/MartinaPlan-Regular.woff2") format("woff2");
       font-weight: 400;
     }
+    @font-face {
+      font-family: "RHPhonic";
+      src: url("fonts/RHPhonic-Regular.woff2") format("woff2");
+      font-weight: 400;
+    }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       background: var(--bg);
       color: var(--white);
-      font-family: var(--font);
-      font-size: var(--fs-body);
-      line-height: var(--lh);
+      /* RH Phonic is the body/default typeface */
+      font-family: "RHPhonic", sans-serif;
+      font-size: 15px;
+      line-height: 1.2; /* 18/15 */
+      letter-spacing: -0.01em;
       -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; text-decoration: none; }
@@ -105,13 +112,37 @@
     .bg-accent { background: var(--accent); }
 
     /* ─── TYPE ─── */
-    .t-caps  { font-size: var(--fs-small); letter-spacing: var(--ls-caps); text-transform: uppercase; opacity: .55; }
-    .t-stat  { font-size: var(--fs-stat);  line-height: 1.05; }
-    .t-head  { font-size: var(--fs-head);  line-height: 1.2; }
-    .t-body  { font-size: var(--fs-body);  line-height: var(--lh); }
-    .t-small { font-size: var(--fs-small); line-height: 1.55; }
-    .dim     { opacity: .65; }
-    .dark-c  { color: var(--bg); }
+    /* Martina Plantijn — 30px / lh 36 / ls -1% — headlines, stats, display */
+    .t-martina {
+      font-family: "MartinaPlan", Georgia, serif;
+      font-size: 30px;
+      line-height: calc(36/30);
+      letter-spacing: -0.01em;
+    }
+    /* Stat numbers use Martina at larger size */
+    .t-stat {
+      font-family: "MartinaPlan", Georgia, serif;
+      font-size: 42px;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+    }
+    /* RH Phonic — 15px / lh 18 / ls -1% — body copy, lists, labels (default) */
+    .t-phonic {
+      font-family: "RHPhonic", sans-serif;
+      font-size: 15px;
+      line-height: calc(18/15);
+      letter-spacing: -0.01em;
+    }
+    /* Small / caps labels — RH Phonic at smaller size */
+    .t-caps {
+      font-family: "RHPhonic", sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      opacity: .5;
+    }
+    .dim    { opacity: .62; }
+    .dark-c { color: var(--bg); }
 
     /* ─── NAV ─── */
     nav {
@@ -119,28 +150,73 @@
       padding: 20px 0;
     }
     .nav-logo {
-      font-size: var(--fs-small); letter-spacing: var(--ls-caps); text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,.35); padding: 5px 9px;
+      font-family: "RHPhonic", sans-serif;
+      font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase;
+      background: var(--bg); color: var(--white);
+      border: 1px solid rgba(255,255,255,.25);
+      padding: 8px 12px;
     }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a { font-size: var(--fs-small); letter-spacing: var(--ls-caps); text-transform: uppercase; opacity: .7; }
-    .nav-links a:hover { opacity: 1; }
+    .nav-links { display: flex; gap: 10px; list-style: none; }
+    .nav-links a {
+      font-family: "RHPhonic", sans-serif;
+      font-size: 13px; letter-spacing: 0.03em;
+      background: var(--white); color: #1a1a1a;
+      padding: 8px 20px;
+      border-radius: 6px;
+      opacity: 1;
+    }
+    .nav-links a:hover { background: #eee; }
 
     /* ─── HERO ─── */
     .hero {
       width: 100%; height: var(--h);
       border-radius: var(--r);
       background: var(--bg);
-      padding: 30px;
-      display: flex; flex-direction: column; justify-content: center;
+      position: relative;
+      overflow: hidden;
     }
-    .hero p { font-size: var(--fs-body); line-height: 1.7; opacity: .82; max-width: 380px; }
+    .hero-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero-center p {
+      font-family: "MartinaPlan", Georgia, serif;
+      font-size: 30px;
+      line-height: calc(36/30);
+      letter-spacing: -0.01em;
+      opacity: .88;
+      max-width: 620px;
+    }
+    .hero-bottom {
+      position: absolute;
+      bottom: 30px;
+      left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero-bottom p {
+      font-family: "RHPhonic", sans-serif;
+      font-size: 15px;
+      line-height: calc(18/15);
+      letter-spacing: -0.01em;
+      opacity: .55;
+    }
 
-    /* ─── FEATURE LIST ─── */
+    /* ─── FEATURE LIST — RH Phonic ─── */
     .flist { list-style: none; margin-top: 24px; }
     .flist li {
-      font-size: var(--fs-small); line-height: 1.5; opacity: .72;
-      padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.1);
+      font-family: "RHPhonic", sans-serif;
+      font-size: 15px;
+      line-height: calc(18/15);
+      letter-spacing: -0.01em;
+      opacity: .68;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
     }
     .flist li:last-child { border-bottom: none; }
 
@@ -210,12 +286,12 @@
   <!-- HERO -->
   <div class="row">
     <div class="hero">
-      <p>
-        Someone you love may need a clinical trial.<br>
-        Today, 88% of hospitals can't run trials.<br>
-        That's not a gap.<br><br>
-        It's a wall.
-      </p>
+      <div class="hero-center">
+        <p>Someone you love may need a clinical trial.<br>Today, 88% of hospitals can't run trials.</p>
+      </div>
+      <div class="hero-bottom">
+        <p>That's not a gap.<br>It's a wall.</p>
+      </div>
     </div>
   </div>
 
@@ -224,28 +300,22 @@
 
     <div class="card c2" style="background:#0e0e0e;">
       <img class="card-media" src="images/jerbosmans_1689254561_3146017743471635129_2126926476.jpg" alt="">
-      <div class="scrim"></div>
-      <div class="ct tl">
-        <p class="t-stat">80%</p>
-        <p class="t-small dim" style="margin-top:10px; max-width:170px;">of trials fail to meet enrollment targets.</p>
+      <div class="ct tl" style="color:#1a1a1a;">
+        <p class="t-martina" style="font-size:30px; line-height:1.1; color:#1a1a1a;">80%<br>of trials fail to meet<br>enrollment targets.</p>
       </div>
     </div>
 
     <div class="card c2" style="background:#0e0e0e;">
       <img class="card-media" src="images/jerbosmans_1706724736_3292568191131982995_2126926476.jpg" alt="">
-      <div class="scrim"></div>
-      <div class="ct tl">
-        <p class="t-stat">$8M</p>
-        <p class="t-small dim" style="margin-top:10px; max-width:170px;">lost per day when trials are delayed.</p>
+      <div class="ct tl" style="color:#1a1a1a;">
+        <p class="t-martina" style="font-size:30px; line-height:1.1; color:#1a1a1a;">$8M<br>lost per day<br>when trials are delayed.</p>
       </div>
     </div>
 
     <div class="card c2" style="background:#0e0e0e;">
       <img class="card-media" src="images/jerbosmans_1712843594_3343896889902993490_2126926476.jpg" alt="">
-      <div class="scrim"></div>
-      <div class="ct tl">
-        <p class="t-stat">88%</p>
-        <p class="t-small dim" style="margin-top:10px; max-width:170px;">of U.S. hospitals lack infrastructure to run clinical trials.</p>
+      <div class="ct tl" style="color:#1a1a1a;">
+        <p class="t-martina" style="font-size:30px; line-height:1.1; color:#1a1a1a;">88% of U.S. hospitals<br>lack infrastructure<br>to run clinical trials.</p>
       </div>
     </div>
 
@@ -255,9 +325,8 @@
   <div class="row">
     <div class="card c6">
       <img class="card-media" src="images/system.jpg" alt="">
-      <div class="scrim"></div>
-      <div class="ct cc">
-        <p class="t-head" style="max-width:420px;">
+      <div class="ct" style="justify-content:flex-end; align-items:center; text-align:center;">
+        <p class="t-phonic" style="opacity:.85; max-width:360px; padding-bottom:10px;">
           The system isn't inefficient.<br>
           It's structurally broken.<br><br>
           For most patients,<br>
@@ -273,7 +342,7 @@
       <video class="card-media" src="images/maria.mp4" autoplay muted loop playsinline></video>
       <div class="scrim-heavy"></div>
       <div class="ct cc">
-        <p class="t-body" style="max-width:440px; opacity:.86; line-height:1.8;">
+        <p class="t-phonic" style="max-width:440px; opacity:.86; line-height:1.7;">
           Maria drove 4 hours each way.<br>
           Twice a week. For six months.<br>
           Then she stopped.<br><br>
@@ -293,11 +362,11 @@
       <img class="card-media" src="images/78c4a918-09b1-4dfa-9973-48d58c0800cc.avif" alt="">
       <div class="scrim"></div>
       <div class="ct cc">
-        <p class="t-head" style="max-width:400px;">
+        <p class="t-martina" style="max-width:400px;">
           Maria didn't fail. The trial didn't fail.<br>
           The system failed.
         </p>
-        <p class="t-small dim" style="margin-top:16px; max-width:340px;">
+        <p class="t-phonic dim" style="margin-top:16px; max-width:340px;">
           It's time to fix the broken system.<br>
           Clinical trial access for all is now a reality.
         </p>
@@ -309,10 +378,10 @@
   <div class="row">
     <div class="card c6 bg-accent">
       <div class="ct cc">
-        <p class="t-head dark-c" style="max-width:460px;">
+        <p class="t-martina dark-c" style="max-width:460px;">
           Trials belong where patients are.
         </p>
-        <p class="t-body dark-c" style="margin-top:14px; opacity:.6; max-width:360px;">
+        <p class="t-phonic dark-c" style="margin-top:14px; opacity:.6; max-width:360px;">
           The trial comes to the patient.<br>
           Not the other way around.<br>
           That's the magic of ElixirTrials.
@@ -326,7 +395,7 @@
 
     <div class="card c3 bg-dark">
       <div class="ct tl">
-        <p class="t-head">You treat<br>the patients.</p>
+        <p class="t-martina">You treat<br>the patients.</p>
         <ul class="flist">
           <li>Zero upfront cost to site.</li>
           <li>100% of trial revenue retained by site.</li>
@@ -341,7 +410,7 @@
 
     <div class="card c3 bg-dark">
       <div class="ct tl">
-        <p class="t-head">You bring<br>the science.</p>
+        <p class="t-martina">You bring<br>the science.</p>
         <ul class="flist">
           <li>We unlock access to previously unreachable patients at scale.</li>
           <li>Accelerated enrollment across a unified network.</li>
@@ -364,11 +433,11 @@
       <div class="scrim"></div>
       <div class="ct cc">
         <p class="t-caps" style="margin-bottom:16px;">Cauldron — Clinical Trial OS</p>
-        <p class="t-head" style="max-width:420px;">
+        <p class="t-martina" style="max-width:420px;">
           The humans make the decisions.<br>
           The AI does the busy work.
         </p>
-        <p class="t-body dim" style="margin-top:14px; max-width:340px;">
+        <p class="t-phonic dim" style="margin-top:16px; max-width:340px;">
           Scheduling, documentation, compliance, reporting —<br>
           all clinical trial workflows. Handled.
         </p>
@@ -389,7 +458,7 @@
           <li>Staffing, technology, regulatory, training — all handled.</li>
           <li>Zero upfront cost to the hospital.</li>
         </ul>
-        <p class="t-small" style="margin-top:auto;opacity:.35;">Philanthropy</p>
+        <p class="t-phonic" style="margin-top:auto;opacity:.35;">Philanthropy</p>
       </div>
       <!-- diagram: right half -->
       <div style="position:absolute;right:0;top:0;width:45%;height:100%;display:flex;align-items:center;justify-content:center;z-index:2;border-left:1px solid rgba(255,255,255,.07);">
@@ -425,7 +494,7 @@
       <img class="card-media" src="images/rebuilding.jpg" alt="">
       <div class="scrim"></div>
       <div class="ct cc">
-        <p class="t-head" style="max-width:460px;">
+        <p class="t-martina" style="max-width:460px;">
           Rebuilding clinical trials around patients.<br>
           Trials come to the patient. Not the other way around.
         </p>
@@ -440,13 +509,13 @@
       <img class="card-media" src="images/heather.jpg" alt="Heather Grey" style="filter:grayscale(100%);object-position:center top;">
       <div class="scrim-heavy"></div>
       <div class="ct tl">
-        <p class="t-body">Heather Grey</p>
-        <p class="t-caps" style="margin-top:3px;">CEO</p>
+        <p class="t-martina" style="font-size:18px; line-height:1.2;">Heather Grey</p>
+        <p class="t-caps" style="margin-top:5px;">CEO</p>
         <div style="margin-top:auto;display:flex;flex-direction:column;gap:4px;">
-          <p class="t-small dim">15+ years building and scaling clinical trial businesses.</p>
-          <p class="t-small dim">Former Tempus TIME Trial builder.</p>
-          <p class="t-small dim">Led large scale pharma partnerships.</p>
-          <p class="t-small dim">Global leader of clinical trial and Real World Data teams.</p>
+          <p class="t-phonic dim">15+ years building and scaling clinical trial businesses.</p>
+          <p class="t-phonic dim">Former Tempus TIME Trial builder.</p>
+          <p class="t-phonic dim">Led large scale pharma partnerships.</p>
+          <p class="t-phonic dim">Global leader of clinical trial and Real World Data teams.</p>
         </div>
       </div>
     </div>
@@ -455,13 +524,13 @@
       <img class="card-media" src="images/noah.jpg" alt="Noah Dolev" style="filter:grayscale(100%);object-position:center top;">
       <div class="scrim-heavy"></div>
       <div class="ct tl">
-        <p class="t-body">Noah Dolev</p>
-        <p class="t-caps" style="margin-top:3px;">PhD, CTO</p>
+        <p class="t-martina" style="font-size:18px; line-height:1.2;">Noah Dolev</p>
+        <p class="t-caps" style="margin-top:5px;">PhD, CTO</p>
         <div style="margin-top:auto;display:flex;flex-direction:column;gap:4px;">
-          <p class="t-small dim">PhD, Computational Neuroscience.</p>
-          <p class="t-small dim">15+ years building AI products.</p>
-          <p class="t-small dim">6 startups.</p>
-          <p class="t-small dim">2 unicorns — Wix, Gong.</p>
+          <p class="t-phonic dim">PhD, Computational Neuroscience.</p>
+          <p class="t-phonic dim">15+ years building AI products.</p>
+          <p class="t-phonic dim">6 startups.</p>
+          <p class="t-phonic dim">2 unicorns — Wix, Gong.</p>
         </div>
       </div>
     </div>
@@ -471,10 +540,10 @@
   <!-- CONTACT CTA 6-col -->
   <div class="row">
     <div class="card c6">
-      <img class="card-media" src="images/jerbosmans_1716834328_3377373594596342193_2126926476.jpg" alt="">
+      <img class="card-media" src="images/contact.jpg" alt="">
       <div class="scrim"></div>
       <div class="ct cc">
-        <a href="mailto:heather@elixirtrials.com" class="email-big">heather@elixirtrials.com</a>
+        <a href="mailto:heather@elixirtrials.com" class="email-big t-martina">heather@elixirtrials.com</a>
       </div>
     </div>
   </div>
