@@ -257,10 +257,10 @@
     @media (max-width: 768px) {
       :root { --mg: 0px; --gu: 0px; }
       body { background: #000; }
-      .row { flex-direction: column; gap: 0; }
+      .row { flex-direction: column; gap: 60px; }
       .c2, .c3, .c6 { width: 100vw; height: calc(100vw * 4 / 3); flex: none; border-radius: 15px; }
       .card { border-radius: 15px; }
-      .row > * + * { margin-top: 60px; }
+      .row > * + * { margin-top: 0; }
       nav { padding: 18px 20px; }
       .hero { width: 100vw; height: calc(100vw * 4 / 3); border-radius: 15px; }
       .footer-top { grid-template-columns: 1fr; }
@@ -287,7 +287,7 @@
   <div class="row">
     <div class="hero card c6">
       <div class="hero-center">
-        <p>Someone you love may need a clinical trial.<br>Today, 88% of hospitals can't run trials.</p>
+        <p>Someone you love<br>may need a clinical trial.<br>Today, 88% of hospitals<br>can't run trials.</p>
       </div>
       <div class="hero-bottom">
         <p>That's not a gap.<br>It's a wall.</p>
