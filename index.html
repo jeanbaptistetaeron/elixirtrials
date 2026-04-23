@@ -716,12 +716,11 @@
         </div>
       </div>
     </div>
-    <!-- Right card: all legal text, in last col of 3 -->
+    <!-- Right card: legal text in second col of 3, with 15px gutters -->
     <div class="card c3 bg-dark" style="height:auto; min-height:var(--h);">
-      <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); height:100%;">
+      <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--gu); height:100%; padding:30px;">
         <div></div>
-        <div></div>
-        <div style="padding:30px; display:flex; flex-direction:column; justify-content:flex-start;">
+        <div style="display:flex; flex-direction:column; justify-content:flex-start;">
           <p class="footer-legal">
             ElixirTrials operates under a decentralized site activation model designed to expand clinical trial access to underserved and geographically distributed patient populations. All participating hospital sites undergo formal feasibility assessment, regulatory documentation review, and protocol-specific staff training prior to site initiation.<br><br>
             Data collection, patient safety monitoring, and adverse event reporting are conducted in accordance with 21 CFR Part 11 and applicable Good Clinical Practice standards. ElixirTrials maintains full audit trail capability across all site activities via the Cauldron platform.<br><br>
@@ -729,6 +728,7 @@
             Cauldron is a proprietary clinical trial management platform developed by ElixirTrials Inc. Site partnerships are subject to executed master service agreements.
           </p>
         </div>
+        <div></div>
       </div>
     </div>
   </div>
