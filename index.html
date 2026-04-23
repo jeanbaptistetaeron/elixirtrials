@@ -435,7 +435,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo"><img src="images/logo.svg" alt="ElixirTrials" style="display:block; height:60px;"></a>
+    <a href="#" class="nav-logo"><img id="nav-logo" src="images/logo_1.svg" alt="ElixirTrials" style="display:block; height:60px;"></a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -763,5 +763,31 @@
   </div>
 
 </div>
+<script>
+  (function() {
+    var logo = document.getElementById('nav-logo');
+    var logos = ['images/logo_1.svg', 'images/logo_2.svg', 'images/logo_3.svg', 'images/logo_4.svg'];
+    var current = 0;
+
+    function getIndex() {
+      var scrolled = window.scrollY;
+      var total = document.body.scrollHeight - window.innerHeight;
+      if (total <= 0) return 0;
+      var pct = scrolled / total;
+      if (pct < 0.25) return 0;
+      if (pct < 0.50) return 1;
+      if (pct < 0.75) return 2;
+      return 3;
+    }
+
+    window.addEventListener('scroll', function() {
+      var idx = getIndex();
+      if (idx !== current) {
+        current = idx;
+        logo.src = logos[current];
+      }
+    }, { passive: true });
+  })();
+</script>
 </body>
 </html>
