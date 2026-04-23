@@ -177,7 +177,7 @@
     .nav-links a:hover { background: #eee; }
     .hero {
       border-radius: var(--r);
-      background: #1C180D;
+      background: #000000;
       position: relative;
       overflow: hidden;
     }
@@ -423,6 +423,7 @@
       .mob-only  { display: inline; }
       .desk-only { display: none; }
       .legal-row-desktop { display: none; }
+      .row-first { margin-top: -15px; }
     }
 
   </style>
@@ -441,7 +442,7 @@
   </nav>
 
   <!-- HERO -->
-  <div class="row">
+  <div class="row row-first">
     <div class="hero card c6">
       <div class="hero-center">
         <p>Someone you love<br class="mob-only"><span class="desk-only"> </span>may need a clinical trial.<br>Today, 88% of hospitals<br class="mob-only"><span class="desk-only"> </span>can't run trials.</p>
@@ -567,7 +568,7 @@
       </div>
     </div>
 
-    <div class="card c2 bg-dark">
+    <div class="card c2" style="background:#000000;">
     </div>
 
     <div class="card c2 bg-dark">
