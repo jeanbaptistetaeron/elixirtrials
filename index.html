@@ -774,8 +774,9 @@
       var total = document.body.scrollHeight - window.innerHeight;
       if (total <= 0) return 0;
       var pct = scrolled / total;
-      // 2 full loops = 8 steps of 12.5% each
-      var step = Math.min(Math.floor(pct * 12), 12);
+      var loops = window.innerWidth <= 750 ? 4 : 3;
+      var steps = loops * 4;
+      var step = Math.min(Math.floor(pct * steps), steps);
       return step % 4;
     }
 
