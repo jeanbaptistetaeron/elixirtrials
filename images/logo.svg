@@ -1,11 +1,11 @@
 <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_f_1059_9)">
-<circle cx="45.1049" cy="45.1049" r="15.1049" fill="#D9D9D9"/>
+<circle cx="45.1049" cy="45.1049" r="15.1049" fill="white"/>
 </g>
-<circle cx="45.1049" cy="75.3149" r="15.1049" fill="#D9D9D9"/>
-<circle cx="75.3146" cy="45.1049" r="15.1049" fill="#D9D9D9"/>
+<circle cx="45.1049" cy="75.3149" r="15.1049" fill="white"/>
+<circle cx="75.3146" cy="45.1049" r="15.1049" fill="white"/>
 <g filter="url(#filter1_d_1059_9)">
-<circle cx="75.3146" cy="75.3149" r="15.1049" fill="#D9D9D9"/>
+<circle cx="75.3146" cy="75.3149" r="15.1049" fill="white"/>
 </g>
 <defs>
 <filter id="filter0_f_1059_9" x="20.5263" y="20.5263" width="49.1571" height="49.1573" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
