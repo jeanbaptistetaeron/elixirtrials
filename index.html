@@ -247,19 +247,82 @@
     .pline { width: 1px; height: 22px; background: rgba(255,255,255,.22); }
 
     /* ─── FOOTER ─── */
-    .footer-wrap { padding: 36px 0 50px; }
-    .footer-top {
-      display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 40px;
-      border-top: 1px solid rgba(255,255,255,.1); padding-top: 26px;
+    .footer-wrap {
+      background: #1C180D;
+      border-radius: var(--r);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      min-height: 720px;
+      position: relative;
     }
-    .footer-col-label { font-size: var(--fs-small); letter-spacing: var(--ls-caps); text-transform: uppercase; opacity: .35; margin-bottom: 10px; }
-    .footer-links { list-style: none; }
-    .footer-links li { margin-bottom: 7px; }
-    .footer-links a { font-size: var(--fs-small); opacity: .55; }
-    .footer-links a:hover { opacity: 1; }
-    .footer-legal { font-size: 10px; line-height: 1.7; opacity: .28; }
-    .footer-bottom { margin-top: 32px; display: flex; justify-content: space-between; }
-    .footer-bottom span { font-size: 10px; opacity: .22; }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .footer-brand p {
+      font-family: "MartinaPlan", Georgia, serif;
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+    .footer-brand .brand-italic {
+      font-style: italic;
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      font-family: "MartinaPlan", Georgia, serif;
+      font-size: 28px;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+    .footer-links a {
+      color: #fff;
+    }
+    .footer-links a:hover {
+      opacity: .7;
+    }
+    .footer-legal {
+      font-family: "RHPhonic", sans-serif;
+      font-size: 11px;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      color: #fff;
+      opacity: .62;
+    }
+    .footer-bottom-area {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      position: relative;
+      min-height: 360px;
+      margin-top: 60px;
+    }
+    .footer-dots {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 72px;
+      height: 72px;
+    }
+    .footer-tagline {
+      text-align: left;
+      padding-bottom: 10px;
+    }
+    .footer-tagline p {
+      font-family: "MartinaPlan", Georgia, serif;
+      font-size: 44px;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
 
     /* ─── EMAIL ─── */
     .email-big { font-size: clamp(14px, 2vw, 26px); letter-spacing: -.01em; }
@@ -277,9 +340,13 @@
       .row > * + * { margin-top: 0; }
       nav { padding: 30px 20px; margin-bottom: 0; }
       .hero { width: 100vw; height: calc(100vw * 4 / 3); border-radius: 15px; }
-      .footer-top { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 30px; }
       .page { gap: 60px; padding: 0; padding-top: 96px; }
-      .footer-wrap { padding: 32px 20px 40px; }
+      .footer-wrap { padding: 32px 20px 40px; min-height: 0; margin: 0 15px; border-radius: 15px; }
+      .footer-bottom-area { min-height: 220px; margin-top: 40px; }
+      .footer-tagline p { font-size: 30px; }
+      .footer-brand p, .footer-links li { font-size: 22px; }
+      .footer-dots { width: 50px; height: 50px; }
       .t-martina { font-size: 25px; line-height: calc(30/25); }
       .hero-center p { font-size: 25px; line-height: calc(30/25); }
       .t-phonic { font-size: 12.5px; line-height: calc(15/12.5); }
@@ -574,31 +641,45 @@
   <!-- FOOTER -->
   <div class="footer-wrap">
     <div class="footer-top">
-      <div>
-        <p class="footer-col-label">ElixirTrials</p>
-        <ul class="footer-links">
-          <li><a href="#">Trials belong where patients are.</a></li>
-        </ul>
+      <div class="footer-brand">
+        <p>Elixir<span class="brand-italic">Trials</span></p>
       </div>
       <div>
-        <p class="footer-col-label">Contact</p>
         <ul class="footer-links">
-          <li><a href="#">LinkedIn</a></li>
-          <li><a href="#">Back to top ↗</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="#top">Back to top ↗</a></li>
         </ul>
       </div>
       <div>
         <p class="footer-legal">
           ElixirTrials is a clinical research organization operating in compliance with ICH-GCP guidelines and applicable FDA and EMA regulations. All trial activities are conducted under institutional review board (IRB) oversight.<br><br>
-          Cauldron is a proprietary clinical trial management platform developed by ElixirTrials Inc. Site partnerships are subject to executed master service agreements.<br><br>
-          ElixirTrials operates under a decentralized site activation model designed to expand clinical trial access to underserved and geographically distributed patient populations. All participating hospital sites undergo formal feasibility assessment, regulatory documentation review, and protocol specific staff training prior to site initiation.<br><br>
+          Cauldron is a proprietary clinical trial management platform developed by ElixirTrials Inc. Site partnerships are subject to executed master service agreements.
+        </p>
+      </div>
+      <div>
+        <p class="footer-legal">
+          ElixirTrials operates under a decentralized site activation model designed to expand clinical trial access to underserved and geographically distributed patient populations. All participating hospital sites undergo formal feasibility assessment, regulatory documentation review, and protocol-specific staff training prior to site initiation.<br><br>
           Data collection, patient safety monitoring, and adverse event reporting are conducted in accordance with 21 CFR Part 11 and applicable Good Clinical Practice standards. ElixirTrials maintains full audit trail capability across all site activities via the Cauldron platform.
         </p>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>ElixirTrials</span>
-      <span>Trials belong where patients are.</span>
+    <div class="footer-bottom-area">
+      <svg class="footer-dots" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <filter id="softBlur" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="1.2" />
+          </filter>
+        </defs>
+        <g filter="url(#softBlur)" fill="#ffffff">
+          <circle cx="22" cy="22" r="14" />
+          <circle cx="52" cy="22" r="14" />
+          <circle cx="22" cy="52" r="14" />
+        </g>
+      </svg>
+      <div class="footer-tagline">
+        <p>Trials belong<br>where patients are.</p>
+      </div>
     </div>
   </div>
 
