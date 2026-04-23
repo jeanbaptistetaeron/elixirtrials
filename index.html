@@ -147,7 +147,7 @@
     /* ─── NAV ─── */
     nav {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 30px 60px;
+      padding: 0 60px 0 0;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -159,7 +159,7 @@
       background: transparent;
       padding: 0;
       display: inline-flex; align-items: center;
-      height: 36px;
+      height: 30px;
       box-sizing: border-box;
     }
     .nav-links { display: flex; gap: 10px; list-style: none; }
@@ -170,12 +170,10 @@
       padding: 0 20px;
       border-radius: 6px;
       display: inline-flex; align-items: center;
-      height: 36px;
+      height: 30px;
       box-sizing: border-box;
     }
     .nav-links a:hover { background: #eee; }
-
-    /* ─── HERO ─── */
     .hero {
       border-radius: var(--r);
       background: #1C180D;
@@ -396,6 +394,7 @@
         bottom: 0;
         display: block;
       }
+      .broken-subtext { color: #1C180D !important; }
       .flist li { font-size: 12.5px; line-height: 45px; letter-spacing: 0.01em; }
       .footer-bottom-area { min-height: 220px; margin-top: 40px; }
       .footer-tagline { margin-left: 0; padding-bottom: 0; position: absolute; bottom: 0; left: 0; }
@@ -418,7 +417,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo"><img src="images/logo.svg" alt="ElixirTrials" style="display:block;"></a>
+    <a href="#" class="nav-logo"><img src="images/logo.svg" alt="ElixirTrials" style="display:block; height:60px;"></a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -508,7 +507,7 @@
         </p>
       </div>
       <div style="position:absolute; bottom:30px; left:0; right:0; display:flex; justify-content:center; text-align:center; z-index:2;">
-        <p class="t-phonic" style="max-width:400px; color:#fff;">
+        <p class="t-phonic broken-subtext" style="max-width:400px; color:#fff;">
           It's time to fix the broken system.<br>
           Clinical trial access for all is now a reality.
         </p>
