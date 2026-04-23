@@ -215,19 +215,18 @@
     }
 
     /* ─── FEATURE LIST — RH Phonic ─── */
-    .flist { list-style: none; margin-top: 24px; }
+    .flist { list-style: none; margin-top: 0; }
     .flist li {
       font-family: "RHPhonic", sans-serif;
       font-size: 15px;
-      line-height: 55px;
+      line-height: calc(18/15);
       letter-spacing: 0;
       color: #8B8784;
-      border-bottom: 1px solid #8B8784;
     }
-    .flist li:last-child { border-bottom: none; }
 
     .cta-link {
-      margin-top: auto; align-self: flex-start;
+      display: inline-block;
+      margin-top: 32px; align-self: flex-start;
       font-size: 15px; letter-spacing: 0;
       color: #8B8784;
       border-bottom: 1px solid rgba(255,255,255,.25); padding-bottom: 2px;
@@ -349,7 +348,7 @@
       html, body        { font-size: 12.5px; }
       .t-phonic         { font-size: 12.5px; line-height: calc(15/12.5); }
       .hero-bottom p    { font-size: 12.5px; line-height: calc(15/12.5); }
-      .flist li         { font-size: 12.5px; }
+      .flist li         { font-size: 12.5px; line-height: calc(15/12.5); }
       .cta-link         { font-size: 12.5px; }
       .nav-links a      { font-size: 12.5px; }
       .t-martina        { font-size: 25px; line-height: calc(30/25); }
@@ -555,31 +554,35 @@
     <div class="card c3 bg-dark">
       <div class="ct tl" style="left:33.33%; width:66.67%;">
         <p class="t-martina">You treat<br>the patients.</p>
-        <ul class="flist">
-          <li>Zero upfront cost to site.</li>
-          <li>100% of trial revenue retained by site.</li>
-          <li>Turnkey infrastructure and staffing support.</li>
-          <li>AI-powered workflow.</li>
-          <li>Access to a steady pipeline of clinical trials.</li>
-          <li>New revenue stream and elevated standard of care.</li>
-        </ul>
-        <a href="#" class="cta-link">Talk to us.</a>
+        <div style="margin-top:auto; display:flex; flex-direction:column;">
+          <ul class="flist">
+            <li>Zero upfront cost to site.</li>
+            <li>100% of trial revenue retained by site.</li>
+            <li>Turnkey infrastructure and staffing support.</li>
+            <li>AI-powered workflow.</li>
+            <li>Access to a steady pipeline of clinical trials.</li>
+            <li>New revenue stream and elevated standard of care.</li>
+          </ul>
+          <a href="#" class="cta-link">Talk to us.</a>
+        </div>
       </div>
     </div>
 
     <div class="card c3 bg-dark">
       <div class="ct tl" style="left:33.33%; width:66.67%;">
         <p class="t-martina">You bring<br>the science.</p>
-        <ul class="flist">
-          <li>Unlock access to previously unreachable patients at scale.</li>
-          <li>Accelerated enrollment across a unified network.</li>
-          <li>Scaled access to diverse, underrepresented patients.</li>
-          <li>One contract, one network, simplified execution.</li>
-          <li>Standardized, regulatory-grade data across all sites.</li>
-          <li>Rapid study start-up with pre-enabled infrastructure.</li>
-          <li>Predictable delivery through centralized operations.</li>
-        </ul>
-        <a href="#" class="cta-link">Talk to us.</a>
+        <div style="margin-top:auto; display:flex; flex-direction:column;">
+          <ul class="flist">
+            <li>Unlock access to previously unreachable patients at scale.</li>
+            <li>Accelerated enrollment across a unified network.</li>
+            <li>Scaled access to diverse, underrepresented patients.</li>
+            <li>One contract, one network, simplified execution.</li>
+            <li>Standardized, regulatory-grade data across all sites.</li>
+            <li>Rapid study start-up with pre-enabled infrastructure.</li>
+            <li>Predictable delivery through centralized operations.</li>
+          </ul>
+          <a href="#" class="cta-link">Talk to us.</a>
+        </div>
       </div>
     </div>
   </div>
