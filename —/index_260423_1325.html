@@ -255,24 +255,21 @@
     }
     .footer-top {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(6, 1fr);
       column-gap: var(--gu);
       align-items: start;
-      height: 100%;
     }
-    .footer-legal-1 { grid-column: 1 / 2; }
-    .footer-brand-block {
-      grid-column: 2 / 3;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
+    .footer-brand {
+      grid-column: 1 / 3;
     }
-    .footer-brand-p {
-      font-family: "MartinaPlan", Georgia, serif;
-      font-size: 30px;
-      line-height: calc(36/30);
-      letter-spacing: -0.01em;
-      color: #fff;
+    .footer-nav {
+      grid-column: 3 / 4;
+    }
+    .footer-legal-1 {
+      grid-column: 5 / 6;
+    }
+    .footer-legal-2 {
+      grid-column: 6 / 7;
     }
     .footer-brand p {
       font-family: "MartinaPlan", Georgia, serif;
@@ -325,7 +322,8 @@
     .footer-tagline {
       text-align: left;
       padding-bottom: 10px;
-      margin-top: auto;
+      margin-left: calc((2/6) * 100% + (2 * var(--gu) / 6));
+      width: calc((2/6) * 100%);
     }
     .footer-tagline p {
       font-family: "MartinaPlan", Georgia, serif;
@@ -697,20 +695,35 @@
 
   <!-- FOOTER -->
   <div class="footer-wrap">
+    <!-- Desktop: single card with grid -->
     <div class="footer-top">
+      <div class="footer-brand">
+        <p>Elixir<span style="color:#8B8784;">Trials</span></p>
+      </div>
+      <div class="footer-nav">
+        <ul class="footer-links">
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="#top">Back to top ↗</a></li>
+        </ul>
+      </div>
       <div class="footer-legal-1">
         <p class="footer-legal">
-          ElixirTrials operates under a decentralized site activation model designed to expand clinical trial access to underserved and geographically distributed patient populations. All participating hospital sites undergo formal feasibility assessment, regulatory documentation review, and protocol-specific staff training prior to site initiation.<br><br>
-          Data collection, patient safety monitoring, and adverse event reporting are conducted in accordance with 21 CFR Part 11 and applicable Good Clinical Practice standards. ElixirTrials maintains full audit trail capability across all site activities via the Cauldron platform.<br><br>
           ElixirTrials is a clinical research organization operating in compliance with ICH-GCP guidelines and applicable FDA and EMA regulations. All trial activities are conducted under institutional review board (IRB) oversight.<br><br>
           Cauldron is a proprietary clinical trial management platform developed by ElixirTrials Inc. Site partnerships are subject to executed master service agreements.
         </p>
       </div>
-      <div class="footer-brand-block">
-        <p class="footer-brand-p">Elixir<span style="color:#8B8784;">Trials</span></p>
-        <div class="footer-tagline">
-          <p>Trials belong<br>where patients are.</p>
-        </div>
+      <div class="footer-legal-2">
+        <p class="footer-legal">
+          ElixirTrials operates under a decentralized site activation model designed to expand clinical trial access to underserved and geographically distributed patient populations. All participating hospital sites undergo formal feasibility assessment, regulatory documentation review, and protocol-specific staff training prior to site initiation.<br><br>
+          Data collection, patient safety monitoring, and adverse event reporting are conducted in accordance with 21 CFR Part 11 and applicable Good Clinical Practice standards. ElixirTrials maintains full audit trail capability across all site activities via the Cauldron platform.
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom-area">
+      <img src="images/logo.svg" alt="ElixirTrials" class="footer-logo" style="filter: brightness(0) saturate(100%) invert(58%) sepia(5%) saturate(347%) hue-rotate(330deg) brightness(93%) contrast(85%);">
+      <div class="footer-tagline">
+        <p>Trials belong<br>where patients are.</p>
       </div>
     </div>
   </div>
