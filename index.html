@@ -344,6 +344,16 @@
     .mob-only  { display: none; }
     .desk-only { display: inline; }
 
+    /* ─── MID (laptop) — font size only ─── */
+    @media (max-width: 1200px) {
+      .t-martina    { font-size: 25px; line-height: calc(30/25); }
+      .hero-center p { font-size: 25px; line-height: calc(30/25); }
+      .email-big    { font-size: 25px; line-height: calc(30/25); }
+      .footer-brand-p { font-size: 25px; line-height: calc(30/25); }
+      .footer-tagline p,
+      .footer-tagline-p { font-size: 25px; line-height: calc(30/25); }
+    }
+
     /* ─── MOBILE ─── */
     @media (max-width: 750px) {
       :root { --mg: 0px; --gu: 0px; }
@@ -671,8 +681,8 @@
       <div class="scrim-heavy"></div>
       <div class="ct tl">
         <div style="margin-top:auto;display:flex;flex-direction:column;gap:4px;">
-          <p class="t-martina name-30">Noah Dolev</p>
-          <p class="t-phonic" style="margin-top:32px;">PhD, CTO</p>
+          <p class="t-martina" style="font-size:20px; line-height:1.2;">Noah Dolev</p>
+          <p class="t-phonic">PhD, CTO</p>
           <p class="t-phonic" style="margin-top:32px;">PHD, Computational Neuroscience.</p>
           <p class="t-phonic">15+ years building AI products.</p>
           <p class="t-phonic">6 startups.</p>
