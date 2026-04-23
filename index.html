@@ -215,7 +215,7 @@
       line-height: calc(18/15);
       letter-spacing: -0.01em;
       opacity: 1;
-      color: #ffffff;
+      color: #8B8784;
     }
 
     /* ─── FEATURE LIST — RH Phonic ─── */
@@ -232,10 +232,11 @@
 
     .cta-link {
       margin-top: auto; align-self: flex-start;
-      font-size: var(--fs-small); letter-spacing: var(--ls-caps); text-transform: uppercase;
-      opacity: .55; border-bottom: 1px solid rgba(255,255,255,.25); padding-bottom: 2px;
+      font-size: 15px; letter-spacing: 0; 
+      color: #ffffff;
+      border-bottom: 1px solid rgba(255,255,255,.25); padding-bottom: 2px;
     }
-    .cta-link:hover { opacity: 1; }
+    .cta-link:hover { color: #8B8784; }
 
     /* ─── PHASE DIAGRAM ─── */
     .phase-diagram { display: flex; flex-direction: column; align-items: center; }
@@ -295,10 +296,10 @@
       color: #8B8784;
     }
     .footer-links a {
-      color: #ffffff;
+      color: #8B8784;
     }
     .footer-links a:hover {
-      color: #8B8784;
+      color: #ffffff;
     }
     .footer-legal {
       font-family: "RHPhonic", sans-serif;
@@ -351,6 +352,7 @@
       body { background: #000; }
       .row { flex-direction: column; gap: 60px; }
       .c2, .c3, .c6 { width: 100vw; height: calc(100vw * 4 / 3); flex: none; border-radius: 15px; }
+      .card.bg-dark { height: auto; min-height: calc(100vw * 4 / 3); }
       .card { border-radius: 15px; }
       .row > * + * { margin-top: 0; }
       nav { padding: 30px 20px; margin-bottom: 0; }
@@ -362,7 +364,7 @@
         display: flex;
         flex-direction: column;
         gap: 60px;
-        margin-bottom: 120px;
+        margin-bottom: 60px;
       }
       .footer-mobile-card {
         background: #1C180D;
@@ -579,7 +581,9 @@
           The humans make the decisions.<br>
           The AI does the busy work.
         </p>
-        <p class="t-phonic dim" style="margin-top:16px; max-width:340px;">
+      </div>
+      <div style="position:absolute; bottom:30px; left:0; right:0; display:flex; justify-content:center; text-align:center; z-index:2;">
+        <p class="t-phonic" style="color:#8B8784;">
           Scheduling, documentation, compliance, reporting —<br>
           all clinical trial workflows. Handled.
         </p>
