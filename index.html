@@ -270,10 +270,10 @@
       grid-column: 3 / 4;
     }
     .footer-legal-1 {
-      grid-column: 4 / 5;
+      grid-column: 5 / 6;
     }
     .footer-legal-2 {
-      grid-column: 5 / 7;
+      grid-column: 6 / 7;
     }
     .footer-brand p {
       font-family: "MartinaPlan", Georgia, serif;
@@ -329,7 +329,8 @@
     .footer-tagline {
       text-align: left;
       padding-bottom: 10px;
-      margin-left: calc((2/6) * 100% + (1/6) * var(--gu));
+      margin-left: calc((2/6) * 100% + (2 * var(--gu) / 6));
+      width: calc((2/6) * 100%);
     }
     .footer-tagline p {
       font-family: "MartinaPlan", Georgia, serif;
@@ -346,7 +347,7 @@
     .desk-only { display: inline; }
 
     /* ─── MOBILE ─── */
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       :root { --mg: 0px; --gu: 0px; }
       body { background: #000; }
       .row { flex-direction: column; gap: 60px; }
