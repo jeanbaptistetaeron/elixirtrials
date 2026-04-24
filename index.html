@@ -673,29 +673,9 @@
     </div>
 
     <div class="card c2" style="background:#000000;position:relative;">
-      <!-- Arrows only SVG -->
-      <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:1;" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="arr" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
-            <path d="M0,0 L8,4 L0,8 Z" fill="#8B8784"/>
-          </marker>
-        </defs>
-        <!-- nodes: Site(100,30) Elixir(30,130) Patients(100,130) Trials(170,130) Sponsor(100,230) -->
-        <!-- Site → Trials (short, centered) -->
-        <line x1="118" y1="48" x2="150" y2="112" stroke="#8B8784" stroke-width="1" marker-end="url(#arr)"/>
-        <!-- Trials → Sponsor -->
-        <line x1="152" y1="148" x2="118" y2="212" stroke="#8B8784" stroke-width="1" marker-end="url(#arr)"/>
-        <!-- Sponsor → Elixir -->
-        <line x1="82" y1="212" x2="48" y2="148" stroke="#8B8784" stroke-width="1" marker-end="url(#arr)"/>
-        <!-- Elixir → Site -->
-        <line x1="48" y1="112" x2="82" y2="48" stroke="#8B8784" stroke-width="1" marker-end="url(#arr)"/>
-        <!-- Labels -->
-        <text x="100" y="34" text-anchor="middle" font-family="RHPhonic,sans-serif" font-size="5.5" letter-spacing="0.07em" fill="#8B8784">SITE</text>
-        <text x="30" y="134" text-anchor="middle" font-family="RHPhonic,sans-serif" font-size="5.5" letter-spacing="0.07em" fill="#ffffff">ELIXIR</text>
-        <text x="100" y="134" text-anchor="middle" font-family="RHPhonic,sans-serif" font-size="5.5" letter-spacing="0.07em" fill="#8B8784">PATIENTS</text>
-        <text x="170" y="134" text-anchor="middle" font-family="RHPhonic,sans-serif" font-size="5.5" letter-spacing="0.07em" fill="#ffffff">TRIALS</text>
-        <text x="100" y="234" text-anchor="middle" font-family="RHPhonic,sans-serif" font-size="5.5" letter-spacing="0.07em" fill="#8B8784">SPONSOR</text>
-      </svg>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+        <img src="images/diagram.svg" style="width:70%;height:auto;" alt="">
+      </div>
     </div>
 
     <div class="card c2 bg-dark">
