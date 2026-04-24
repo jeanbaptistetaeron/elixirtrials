@@ -380,8 +380,11 @@
     .mob-only  { display: none; }
     .desk-only { display: inline; }
 
-    /* ─── TABLET (under 1200px) — font size only ─── */
+    /* ─── TABLET (under 1200px) ─── */
     @media (max-width: 1200px) {
+      :root { --mg: 20px; --gu: 10px; }
+      .ct { padding: 20px; }
+      .hero-bottom { bottom: 20px; left: 20px; right: 20px; }
       html, body        { font-size: 12.5px; }
       .t-phonic         { font-size: 12.5px; line-height: calc(15/12.5); }
       .hero-bottom p    { font-size: 12.5px; line-height: calc(15/12.5); }
