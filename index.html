@@ -677,29 +677,44 @@
             <path d="M0,0 L6,3 L0,6 L1.5,3 Z" fill="#8B8784"/>
           </marker>
         </defs>
-        <!-- Site(100,90) → Trials(160,225): midpoint centered, short -->
-        <line x1="123" y1="113" x2="137" y2="135" stroke="#8B8784" stroke-width="0.75" marker-end="url(#arr)"/>
-        <!-- Trials(160,225) → Sponsor(100,210): midpoint centered, short -->
-        <line x1="143" y1="220" x2="117" y2="213" stroke="#8B8784" stroke-width="0.75" marker-end="url(#arr)"/>
-        <!-- Sponsor(100,210) → Elixir(40,75): midpoint centered, short -->
-        <line x1="83" y1="200" x2="69" y2="178" stroke="#8B8784" stroke-width="0.75" marker-end="url(#arr)"/>
-        <!-- Elixir(40,75) → Site(100,90): midpoint centered, short -->
-        <line x1="57" y1="83" x2="83" y2="88" stroke="#8B8784" stroke-width="0.75" marker-end="url(#arr)"/>
+        <!-- Site(100,50) → Trials(160,150) -->
+        <line x1="116" y1="75" x2="144" y2="125" stroke="#8B8784" stroke-width="0.75" marker-end="url(#arr)"/>
+        <!-- Trials(160,150) → Sponsor(100,250) -->
+        <line x1="144" y1="175" x2="116" y2="225" stroke="#8B8784" stroke-width="0.75" marker-end="url(#arr)"/>
+        <!-- Sponsor(100,250) → Elixir(40,150) -->
+        <line x1="84" y1="225" x2="56" y2="175" stroke="#8B8784" stroke-width="0.75" marker-end="url(#arr)"/>
+        <!-- Elixir(40,150) → Site(100,50) -->
+        <line x1="56" y1="125" x2="84" y2="75" stroke="#8B8784" stroke-width="0.75" marker-end="url(#arr)"/>
       </svg>
       <!-- Labels layer -->
-      <div style="position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;z-index:2;">
+      <div style="position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;grid-template-rows:1fr 1fr 1fr;z-index:2;">
+        <!-- row 1 -->
         <div></div>
-        <div style="display:flex;align-items:flex-start;justify-content:center;padding-top:22%;">
+        <div></div>
+        <div style="display:flex;align-items:center;justify-content:center;">
+          <span class="t-caps" style="color:#ffffff;">Site</span>
+        </div>
+        <div></div>
+        <div></div>
+        <!-- row 2 -->
+        <div></div>
+        <div style="display:flex;align-items:center;justify-content:center;">
           <span class="t-caps" style="color:#ffffff;">Elixir</span>
         </div>
-        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:54px;">
-          <span class="t-caps" style="color:#ffffff;">Site</span>
+        <div style="display:flex;align-items:center;justify-content:center;">
           <span class="t-caps" style="color:#ffffff;">Patients</span>
-          <span class="t-caps" style="color:#ffffff;">Sponsor</span>
         </div>
-        <div style="display:flex;align-items:flex-end;justify-content:center;padding-bottom:22%;">
+        <div style="display:flex;align-items:center;justify-content:center;">
           <span class="t-caps" style="color:#ffffff;">Trials</span>
         </div>
+        <div></div>
+        <!-- row 3 -->
+        <div></div>
+        <div></div>
+        <div style="display:flex;align-items:center;justify-content:center;">
+          <span class="t-caps" style="color:#ffffff;">Sponsor</span>
+        </div>
+        <div></div>
         <div></div>
       </div>
     </div>
