@@ -779,7 +779,7 @@
     <!-- Card 2: logo -->
     <div class="card c2" style="height:auto; min-height:var(--h); background:#000000;">
       <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-        <img src="images/logo_1.svg" style="width:33.3333%;height:auto;" alt="ElixirTrials">
+        <img id="footer-logo" src="images/logo_1.svg" style="width:25%;height:auto;" alt="ElixirTrials">
       </div>
     </div>
     <!-- Card 3: all legal text -->
@@ -815,6 +815,18 @@
 
 </div>
 <script>
+  (function() {
+    var footerLogo = document.getElementById('footer-logo');
+    if (footerLogo) {
+      var fi = 0;
+      var flogos = ['images/logo_1.svg', 'images/logo_2.svg', 'images/logo_3.svg', 'images/logo_4.svg'];
+      setInterval(function() {
+        fi = (fi + 1) % 4;
+        footerLogo.src = flogos[fi];
+      }, 600);
+    }
+  })();
+
   (function() {
     var logo = document.getElementById('nav-logo');
     var logos = ['images/logo_1.svg', 'images/logo_2.svg', 'images/logo_3.svg', 'images/logo_4.svg'];
