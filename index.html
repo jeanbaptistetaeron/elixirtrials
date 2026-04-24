@@ -145,6 +145,8 @@
     .name-30 { font-size: 30px; line-height: calc(36/30); }
     .dark-c { color: var(--bg); }
 
+    .row-first { margin-top: -15px; }
+
     /* ─── NAV ─── */
     nav {
       display: flex; align-items: center; justify-content: space-between;
@@ -180,6 +182,7 @@
       background: #000000;
       position: relative;
       overflow: hidden;
+
     }
     .hero-center {
       position: absolute;
@@ -200,10 +203,10 @@
     .hero-bottom {
       position: absolute;
       bottom: 30px;
-      left: 30px; right: 30px;
+      left: 0; right: 0;
       display: flex;
-      justify-content: flex-start;
-      text-align: left;
+      justify-content: center;
+      text-align: center;
     }
     .hero-bottom p {
       font-family: "RHPhonic", sans-serif;
@@ -211,7 +214,7 @@
       line-height: calc(18/15);
       letter-spacing: -0.01em;
       opacity: 1;
-      color: #8B8784;
+      color: #ffffff;
     }
 
     /* ─── FEATURE LIST — RH Phonic ─── */
@@ -458,21 +461,21 @@
 
     <div class="card c2" style="background:#0e0e0e;">
       <img class="card-media" src="images/image_1.jpg" alt="">
-      <div class="ct tl" style="color:#1C180D;">
+      <div class="ct tl" style="justify-content:flex-end;">
         <p class="t-martina" style="line-height:1.1; color:#1C180D;">80%<br>of trials fail to meet<br>enrollment targets.</p>
       </div>
     </div>
 
     <div class="card c2" style="background:#0e0e0e;">
       <img class="card-media" src="images/image_2.jpg" alt="" style="transform:scale(1.5); transform-origin:center center;">
-      <div class="ct tl" style="color:#1C180D;">
+      <div class="ct tl" style="justify-content:flex-end;">
         <p class="t-martina" style="line-height:1.1; color:#1C180D;">$8M<br>lost per day<br>when trials are delayed.</p>
       </div>
     </div>
 
     <div class="card c2" style="background:#0e0e0e;">
       <img class="card-media" src="images/image_3.jpg" alt="" style="transform:scale(1.5); transform-origin:center center;">
-      <div class="ct tl" style="color:#1C180D;">
+      <div class="ct tl" style="justify-content:flex-end;">
         <p class="t-martina" style="line-height:1.1; color:#1C180D;">88% of U.S. hospitals<br>lack infrastructure<br>to run clinical trials.</p>
       </div>
     </div>
