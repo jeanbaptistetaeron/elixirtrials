@@ -853,7 +853,7 @@
     var current = 0;
 
     function getIndex() {
-      var scrolled = window.scrollY;
+      var scrolled = Math.max(0, window.scrollY);
       var total = document.body.scrollHeight - window.innerHeight;
       if (total <= 0) return 0;
       var pct = scrolled / total;
