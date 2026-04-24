@@ -244,6 +244,40 @@
     }
     .pline { width: 1px; height: 22px; background: rgba(255,255,255,.22); }
 
+    /* ─── FLOW DIAGRAM ─── */
+    .flow-diagram {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 200px;
+    }
+    .flow-row {
+      display: flex;
+      justify-content: center;
+    }
+    .flow-label {
+      font-family: "RHPhonic", sans-serif;
+      font-size: 15px;
+      line-height: calc(18/15);
+      letter-spacing: -0.01em;
+      color: rgba(255,255,255,0.6);
+      white-space: nowrap;
+    }
+    .flow-vline {
+      width: 1px;
+      height: 30px;
+      background: rgba(255,255,255,0.25);
+    }
+    .flow-arms {
+      width: 100%;
+    }
+    @media (max-width: 1200px) {
+      .flow-label { font-size: 12.5px; line-height: calc(15/12.5); }
+    }
+    @media (max-width: 750px) {
+      .flow-label { font-size: 12.5px; line-height: calc(15/12.5); }
+    }
+
     /* ─── FOOTER ─── */
     .footer-wrap {
       background: #1C180D;
@@ -635,16 +669,54 @@
       </div>
     </div>
 
-    <div class="card c2 bg-dark">
+    <div class="card c2" style="background:#000000;">
       <div class="ct cc">
-        <div class="phase-diagram">
-          <div class="pnode">Sponsor</div>
-          <div class="pline"></div>
-          <div class="pnode">ElixirTrials</div>
-          <div class="pline"></div>
-          <div class="pnode">Site</div>
-          <div class="pline"></div>
-          <div class="pnode">Patients</div>
+        <div class="flow-diagram">
+
+          <!-- Sponsor -->
+          <div class="flow-row">
+            <div class="flow-label">Sponsor</div>
+          </div>
+
+          <!-- bracket arms down from Sponsor -->
+          <div class="flow-arms">
+            <svg width="100%" height="44" viewBox="0 0 200 44" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M100 0 L100 10 Q100 20 80 20 L20 20" stroke="rgba(255,255,255,0.25)" stroke-width="0.75" fill="none"/>
+              <path d="M100 0 L100 10 Q100 20 120 20 L180 20" stroke="rgba(255,255,255,0.25)" stroke-width="0.75" fill="none"/>
+              <line x1="20" y1="20" x2="20" y2="44" stroke="rgba(255,255,255,0.25)" stroke-width="0.75"/>
+              <line x1="180" y1="20" x2="180" y2="44" stroke="rgba(255,255,255,0.25)" stroke-width="0.75"/>
+            </svg>
+          </div>
+
+          <!-- ElixirTrials -->
+          <div class="flow-row">
+            <div class="flow-label">ElixirTrials</div>
+          </div>
+
+          <!-- straight line down -->
+          <div class="flow-vline"></div>
+
+          <!-- Site -->
+          <div class="flow-row">
+            <div class="flow-label">Site</div>
+          </div>
+
+          <!-- bracket arms down from Site -->
+          <div class="flow-arms">
+            <svg width="100%" height="44" viewBox="0 0 200 44" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="20" y1="0" x2="20" y2="24" stroke="rgba(255,255,255,0.25)" stroke-width="0.75"/>
+              <line x1="180" y1="0" x2="180" y2="24" stroke="rgba(255,255,255,0.25)" stroke-width="0.75"/>
+              <path d="M20 24 Q20 34 40 34 L100 34" stroke="rgba(255,255,255,0.25)" stroke-width="0.75" fill="none"/>
+              <path d="M180 24 Q180 34 160 34 L100 34" stroke="rgba(255,255,255,0.25)" stroke-width="0.75" fill="none"/>
+              <line x1="100" y1="34" x2="100" y2="44" stroke="rgba(255,255,255,0.25)" stroke-width="0.75"/>
+            </svg>
+          </div>
+
+          <!-- Patients -->
+          <div class="flow-row">
+            <div class="flow-label">Patients</div>
+          </div>
+
         </div>
       </div>
     </div>
