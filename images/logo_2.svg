@@ -1,15 +1,15 @@
 <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_f_1091_38)">
-<circle cx="74.8951" cy="45.1049" r="15.1049" transform="rotate(90 74.8951 45.1049)" fill="white"/>
+<g filter="url(#filter0_f_1059_9)">
+<circle cx="45.1049" cy="45.1049" r="15.1049" fill="white"/>
 </g>
-<circle cx="44.6854" cy="45.1049" r="15.1049" transform="rotate(90 44.6854 45.1049)" fill="white"/>
-<circle cx="74.8951" cy="75.3149" r="15.1049" transform="rotate(90 74.8951 75.3149)" fill="white"/>
-<circle cx="44.6854" cy="75.3149" r="15.1049" transform="rotate(90 44.6854 75.3149)" fill="white"/>
+<circle cx="45.1049" cy="75.3149" r="15.1049" fill="white"/>
+<circle cx="75.3146" cy="45.1049" r="15.1049" fill="white"/>
+<circle cx="75.3146" cy="75.3149" r="15.1049" fill="white"/>
 <defs>
-<filter id="filter0_f_1091_38" x="50.3166" y="20.5263" width="49.1571" height="49.1573" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_f_1059_9" x="20.5263" y="20.5263" width="49.1571" height="49.1573" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-<feGaussianBlur stdDeviation="4.73684" result="effect1_foregroundBlur_1091_38"/>
+<feGaussianBlur stdDeviation="4.73684" result="effect1_foregroundBlur_1059_9"/>
 </filter>
 </defs>
 </svg>

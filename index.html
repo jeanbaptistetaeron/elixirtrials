@@ -168,7 +168,8 @@
     .nav-links a {
       font-family: "RHPhonic", sans-serif;
       font-size: 15px; letter-spacing: 0.03em;
-      background: rgba(255,255,255,0.75); color: #1C180D;
+      background: rgba(255,255,255,1); color: #1C180D;
+      transition: background 0.3s ease;
       padding: 0;
       border-radius: 6px;
       display: inline-flex; align-items: center; justify-content: center;
@@ -461,21 +462,21 @@
 
     <div class="card c2" style="background:#0e0e0e;">
       <img class="card-media" src="images/image_1.jpg" alt="">
-      <div class="ct tl" style="justify-content:flex-end;">
+      <div class="ct tl">
         <p class="t-martina" style="line-height:1.1; color:#1C180D;">80%<br>of trials fail to meet<br>enrollment targets.</p>
       </div>
     </div>
 
     <div class="card c2" style="background:#0e0e0e;">
       <img class="card-media" src="images/image_2.jpg" alt="" style="transform:scale(1.5); transform-origin:center center;">
-      <div class="ct tl" style="justify-content:flex-end;">
+      <div class="ct tl">
         <p class="t-martina" style="line-height:1.1; color:#1C180D;">$8M<br>lost per day<br>when trials are delayed.</p>
       </div>
     </div>
 
     <div class="card c2" style="background:#0e0e0e;">
       <img class="card-media" src="images/image_3.jpg" alt="" style="transform:scale(1.5); transform-origin:center center;">
-      <div class="ct tl" style="justify-content:flex-end;">
+      <div class="ct tl">
         <p class="t-martina" style="line-height:1.1; color:#1C180D;">88% of U.S. hospitals<br>lack infrastructure<br>to run clinical trials.</p>
       </div>
     </div>
@@ -789,12 +790,21 @@
       return step % 4;
     }
 
+    var navLinks = document.querySelectorAll('.nav-links a');
+    function updateNav() {
+      var scrolled = window.scrollY;
+      var bg = scrolled > 10 ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,1)';
+      navLinks.forEach(function(a) { a.style.background = bg; });
+    }
+    updateNav();
+
     window.addEventListener('scroll', function() {
       var idx = getIndex();
       if (idx !== current) {
         current = idx;
         logo.src = logos[current];
       }
+      updateNav();
     }, { passive: true });
   })();
 </script>
