@@ -855,7 +855,7 @@
         e.preventDefault();
         var target = document.getElementById('process');
         if (target) {
-          var top = target.getBoundingClientRect().top + window.scrollY + 2;
+          var top = target.getBoundingClientRect().top + window.scrollY - 30;
           window.scrollTo({ top: top, behavior: 'smooth' });
         }
       });
