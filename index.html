@@ -583,7 +583,7 @@
   </div>
 
   <!-- TRIALS BELONG — YELLOW 6-col -->
-  <div class="row" id="process" style="scroll-margin-top:60px;">
+  <div class="row">
     <div class="card c6 bg-accent">
       <div class="ct cc">
         <p class="t-martina" style="color:#1C180D;">
@@ -601,7 +601,7 @@
   </div>
 
   <!-- YOU TREAT / EMPTY / YOU BRING 3×2-col -->
-  <div class="row">
+  <div class="row" id="process" style="scroll-margin-top:0px;">
     <div class="card c2 bg-dark">
       <div class="ct tl">
         <p class="t-martina">You treat<br>the patients.</p>
@@ -845,6 +845,20 @@
         footerLogo.src = flogos[fi];
         if (footerLogoMobile) footerLogoMobile.src = flogos[fi];
       }, 1000);
+    }
+  })();
+
+  (function() {
+    var processLink = document.querySelector('a[href="#process"]');
+    if (processLink) {
+      processLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.getElementById('process');
+        if (target) {
+          var top = target.getBoundingClientRect().top + window.scrollY + 10;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
     }
   })();
 
