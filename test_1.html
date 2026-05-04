@@ -871,19 +871,7 @@
         var navHeight = window.innerWidth <= 750 ? 60 : 0;
           var top = target.getBoundingClientRect().top + window.scrollY - navHeight;
           if (window.innerWidth > 750) {
-            // Fast smooth scroll on desktop
-            var start = window.scrollY;
-            var distance = top - start;
-            var duration = 250;
-            var startTime = null;
-            function ease(t) { return t; }
-            function step(timestamp) {
-              if (!startTime) startTime = timestamp;
-              var progress = Math.min((timestamp - startTime) / duration, 1);
-              window.scrollTo(0, start + distance * ease(progress));
-              if (progress < 1) requestAnimationFrame(step);
-            }
-            requestAnimationFrame(step);
+            window.scrollTo({ top: top, behavior: 'instant' });
           } else {
             window.scrollTo({ top: top, behavior: 'smooth' });
           }
