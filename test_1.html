@@ -912,7 +912,7 @@
 
       for (var i = 0; i < sections.length; i++) {
         var start = sectionTops[i] - 60;
-        var end = (i < sections.length - 1) ? sectionTops[i + 1] - 60 : sectionTops[i] + document.getElementById(sections[i].id).offsetHeight;
+        var end = (i < sections.length - 1) ? sectionTops[i + 1] - 60 : Infinity;
         if (scrolled >= start && scrolled < end) {
           activeHref = sections[i].href;
         }
