@@ -172,7 +172,7 @@
       display: inline-flex; align-items: center;
       box-sizing: border-box;
     }
-    .nav-links { display: flex; gap: 0; list-style: none; position: relative; overflow: visible; padding: 4px 0; margin: -4px 0; }
+    .nav-links { display: flex; gap: 0; list-style: none; position: relative; overflow: visible; }
     .nav-links a {
       font-family: "RHPhonic", sans-serif;
       font-size: 12.5px; letter-spacing: 0.03em;
@@ -184,19 +184,22 @@
       display: inline-flex; align-items: center; justify-content: center;
       box-sizing: border-box;
       position: relative;
+      overflow: hidden;
     }
-    /* Shared blurry pill that slides between buttons */
-    .nav-blur-pill {
+
+    .nav-links a::before {
+      content: '';
       position: absolute;
-      top: 0;
-      height: 30px;
+      inset: 0;
       border-radius: 15px;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 1);
       filter: blur(2px);
+      opacity: 0;
       pointer-events: none;
       z-index: 0;
-      opacity: 0;
-      transition: none;
+    }
+    .nav-links a.nav-blur::before {
+      opacity: 1;
     }
     .nav-links a span {
       position: relative;
@@ -902,13 +905,6 @@
     }
 
     var navLinks = document.querySelectorAll('.nav-links a');
-    var navLinksList = document.querySelector('.nav-links');
-
-    // Inject a single shared blurry pill element
-    var pill = document.createElement('div');
-    pill.className = 'nav-blur-pill';
-    navLinksList.appendChild(pill);
-
     var sections = [
       { id: 'process',  href: '#process' },
       { id: 'about',    href: '#about'   },
@@ -918,17 +914,19 @@
     function updateNav() {
       var scrolled = window.scrollY;
       var activeHref = null;
-      // Activate whichever section we've most recently scrolled past.
-      // For the last section (CONTACT), also deactivate once it leaves the viewport.
+      // A section is active from when its top enters the viewport
+      // until the NEXT section's top enters the viewport.
+      // Reset activeHref to null once we've scrolled past the last section's card.
+      var sectionTops = sections.map(function(s) {
+        var el = document.getElementById(s.id);
+        if (!el) return Infinity;
+        return el.getBoundingClientRect().top + scrolled;
+      });
+
       for (var i = 0; i < sections.length; i++) {
-        var el = document.getElementById(sections[i].id);
-        if (!el) continue;
-        var rect = el.getBoundingClientRect();
-        var absTop = rect.top + scrolled;
-        var isLast = (i === sections.length - 1);
-        var pastTop = scrolled >= absTop - 60;
-        var stillVisible = rect.bottom > 0;
-        if (pastTop && (!isLast || stillVisible)) {
+        var start = sectionTops[i] - 60;
+        var end = (i < sections.length - 1) ? sectionTops[i + 1] - 60 : sectionTops[i] + document.getElementById(sections[i].id).offsetHeight;
+        if (scrolled >= start && scrolled < end) {
           activeHref = sections[i].href;
         }
       }
@@ -947,16 +945,7 @@
         }
       });
 
-      // Position the sliding pill behind the active link
-      if (activeLink) {
-        var listRect = navLinksList.getBoundingClientRect();
-        var linkRect = activeLink.getBoundingClientRect();
-        pill.style.left  = (linkRect.left - listRect.left) + 'px';
-        pill.style.width = linkRect.width + 'px';
-        pill.style.opacity = '1';
-      } else {
-        pill.style.opacity = '0';
-      }
+
     }
     updateNav();
 
