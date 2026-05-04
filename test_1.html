@@ -188,8 +188,8 @@
     /* Shared blurry pill that slides between buttons */
     .nav-blur-pill {
       position: absolute;
-      top: -3px;
-      height: 36px;
+      top: 0;
+      height: 30px;
       border-radius: 15px;
       background: rgba(255, 255, 255, 0.9);
       filter: blur(2px);
@@ -918,15 +918,17 @@
     function updateNav() {
       var scrolled = window.scrollY;
       var activeHref = null;
-      // Find whichever section top we've most recently scrolled past,
-      // but only while that section's element is still visible in the viewport
+      // Activate whichever section we've most recently scrolled past.
+      // For the last section (CONTACT), also deactivate once it leaves the viewport.
       for (var i = 0; i < sections.length; i++) {
         var el = document.getElementById(sections[i].id);
         if (!el) continue;
         var rect = el.getBoundingClientRect();
         var absTop = rect.top + scrolled;
-        // Section must have been scrolled into view AND still be on screen
-        if (scrolled >= absTop - 60 && rect.bottom > 0) {
+        var isLast = (i === sections.length - 1);
+        var pastTop = scrolled >= absTop - 60;
+        var stillVisible = rect.bottom > 0;
+        if (pastTop && (!isLast || stillVisible)) {
           activeHref = sections[i].href;
         }
       }
