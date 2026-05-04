@@ -172,7 +172,7 @@
       display: inline-flex; align-items: center;
       box-sizing: border-box;
     }
-    .nav-links { display: flex; gap: 0; list-style: none; position: relative; }
+    .nav-links { display: flex; gap: 0; list-style: none; position: relative; overflow: visible; padding: 4px 0; margin: -4px 0; }
     .nav-links a {
       font-family: "RHPhonic", sans-serif;
       font-size: 12.5px; letter-spacing: 0.03em;
@@ -188,8 +188,8 @@
     /* Shared blurry pill that slides between buttons */
     .nav-blur-pill {
       position: absolute;
-      top: 0;
-      height: 30px;
+      top: -3px;
+      height: 36px;
       border-radius: 15px;
       background: rgba(255, 255, 255, 0.9);
       filter: blur(2px);
@@ -918,20 +918,19 @@
     function updateNav() {
       var scrolled = window.scrollY;
       var activeHref = null;
-      var atBottom = (window.innerHeight + scrolled) >= document.body.scrollHeight - 10;
-
-      sections.forEach(function(s) {
-        var el = document.getElementById(s.id);
-        if (!el) return;
-        var top = el.getBoundingClientRect().top + scrolled;
-        var bottom = top + el.offsetHeight;
-        if (scrolled >= top - 60 && scrolled < bottom) {
-          activeHref = s.href;
+      // Find whichever section top we've most recently scrolled past,
+      // but only while that section's element is still visible in the viewport
+      for (var i = 0; i < sections.length; i++) {
+        var el = document.getElementById(sections[i].id);
+        if (!el) continue;
+        var rect = el.getBoundingClientRect();
+        var absTop = rect.top + scrolled;
+        // Section must have been scrolled into view AND still be on screen
+        if (scrolled >= absTop - 60 && rect.bottom > 0) {
+          activeHref = sections[i].href;
         }
-      });
+      }
 
-      // If at the very bottom, force contact active
-      if (atBottom) activeHref = '#contact';
 
       var activeLink = null;
       navLinks.forEach(function(a) {
