@@ -939,7 +939,11 @@
 
       var activeLink = null;
       navLinks.forEach(function(a) {
-        if (activeHref && a.getAttribute('href') === activeHref) {
+        if (scrolled === 0) {
+          // At the very top: all transparent
+          a.classList.remove('nav-blur');
+          a.style.color = 'rgba(255,255,255,0.6)';
+        } else if (activeHref && a.getAttribute('href') === activeHref) {
           // Active section: full white
           a.classList.add('nav-blur');
           a.style.color = 'rgba(255,255,255,1)';
@@ -948,7 +952,7 @@
           a.classList.remove('nav-blur');
           a.style.color = 'rgba(255,255,255,0.6)';
         } else {
-          // No section active yet (above PROCESS): all full white
+          // Scrolling but no section active yet: all full white
           a.classList.remove('nav-blur');
           a.style.color = 'rgba(255,255,255,1)';
         }
