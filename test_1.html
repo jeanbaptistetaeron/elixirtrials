@@ -874,9 +874,9 @@
             // Fast smooth scroll on desktop
             var start = window.scrollY;
             var distance = top - start;
-            var duration = 400;
+            var duration = 250;
             var startTime = null;
-            function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+            function ease(t) { return 1 - Math.pow(1 - t, 3); }
             function step(timestamp) {
               if (!startTime) startTime = timestamp;
               var progress = Math.min((timestamp - startTime) / duration, 1);
