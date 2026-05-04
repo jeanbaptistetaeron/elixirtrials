@@ -172,19 +172,42 @@
       display: inline-flex; align-items: center;
       box-sizing: border-box;
     }
-    .nav-links { display: flex; gap: 0; list-style: none; }
+    .nav-links { display: flex; gap: 0; list-style: none; position: relative; }
     .nav-links a {
       font-family: "RHPhonic", sans-serif;
       font-size: 12.5px; letter-spacing: 0.03em;
       background: rgba(255,255,255,1); color: #1C180D;
-      transition: background 0.3s ease;
+      transition: none;
       padding: 0 14px;
       height: 30px;
       border-radius: 15px;
       display: inline-flex; align-items: center; justify-content: center;
       box-sizing: border-box;
+      position: relative;
+    }
+    /* Shared blurry pill that slides between buttons */
+    .nav-blur-pill {
+      position: absolute;
+      top: 0;
+      height: 30px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.9);
+      filter: blur(2px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      transition: none;
+    }
+    .nav-links a span {
+      position: relative;
+      z-index: 2;
+    }
+    .nav-links a.nav-blur {
+      background: transparent !important;
+      color: #1C180D !important;
     }
     .nav-links a:hover { background: #eee; }
+    .nav-links a.nav-blur:hover { background: transparent !important; }
     .hero {
       border-radius: var(--r);
       background: #1C180D;
@@ -486,9 +509,9 @@
   <nav>
     <a href="#" class="nav-logo"><img id="nav-logo" src="images_1/logo_1.svg" alt="ElixirTrials" style="display:block; height:60px;"></a>
     <ul class="nav-links">
-      <li><a href="#process">PROCESS</a></li>
-      <li><a href="#about">ABOUT</a></li>
-      <li><a href="#contact">CONTACT</a></li>
+      <li><a href="#process"><span>PROCESS</span></a></li>
+      <li><a href="#about"><span>ABOUT</span></a></li>
+      <li><a href="#contact"><span>CONTACT</span></a></li>
     </ul>
   </nav>
 
@@ -879,10 +902,60 @@
     }
 
     var navLinks = document.querySelectorAll('.nav-links a');
+    var navLinksList = document.querySelector('.nav-links');
+
+    // Inject a single shared blurry pill element
+    var pill = document.createElement('div');
+    pill.className = 'nav-blur-pill';
+    navLinksList.appendChild(pill);
+
+    var sections = [
+      { id: 'process',  href: '#process' },
+      { id: 'about',    href: '#about'   },
+      { id: 'contact',  href: '#contact' }
+    ];
+
     function updateNav() {
       var scrolled = window.scrollY;
-      var bg = scrolled > 10 ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,1)';
-      navLinks.forEach(function(a) { a.style.background = bg; });
+      var activeHref = null;
+      var atBottom = (window.innerHeight + scrolled) >= document.body.scrollHeight - 10;
+
+      sections.forEach(function(s) {
+        var el = document.getElementById(s.id);
+        if (!el) return;
+        var top = el.getBoundingClientRect().top + scrolled;
+        var bottom = top + el.offsetHeight;
+        if (scrolled >= top - 60 && scrolled < bottom) {
+          activeHref = s.href;
+        }
+      });
+
+      // If at the very bottom, force contact active
+      if (atBottom) activeHref = '#contact';
+
+      var activeLink = null;
+      navLinks.forEach(function(a) {
+        if (activeHref && a.getAttribute('href') === activeHref) {
+          a.classList.add('nav-blur');
+          a.style.background = '';
+          activeLink = a;
+        } else {
+          a.classList.remove('nav-blur');
+          var bg = scrolled > 10 ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,1)';
+          a.style.background = bg;
+        }
+      });
+
+      // Position the sliding pill behind the active link
+      if (activeLink) {
+        var listRect = navLinksList.getBoundingClientRect();
+        var linkRect = activeLink.getBoundingClientRect();
+        pill.style.left  = (linkRect.left - listRect.left) + 'px';
+        pill.style.width = linkRect.width + 'px';
+        pill.style.opacity = '1';
+      } else {
+        pill.style.opacity = '0';
+      }
     }
     updateNav();
 
