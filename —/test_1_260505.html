@@ -71,7 +71,7 @@
     .page {
       max-width: 1728px;
       margin: 0 auto;
-      padding: 0 var(--mg) var(--mg);
+      padding: 0 var(--mg);
       display: flex;
       flex-direction: column;
       gap: var(--gu);
@@ -432,11 +432,10 @@
       .card.bg-dark .ct { position: absolute; inset: 0; height: auto; width: 100%; }
       .card { border-radius: 15px; }
       .row > * + * { margin-top: 0; }
-      nav { position: fixed; padding: 0 15px 0 0 !important; margin: 0 !important; top: 0; left: 0; right: 0; height: 60px; align-items: center; z-index: 1000; overflow: visible; }
+      nav { position: fixed; padding: 0 15px 0 0 !important; margin: 0 !important; top: 0; left: 0; right: 0; height: 60px; align-items: center; z-index: 100; overflow: visible; }
       .hero { width: 100vw; height: calc(100vw * 4 / 3); border-radius: 15px; }
       .footer-top { grid-template-columns: 1fr; gap: 30px; }      .page { gap: 60px; padding: 0; padding-top: 60px; }
       .footer-wrap { display: none; }
-      .diagram-card-hide-mobile { display: none !important; }
       .footer-mobile {
         display: flex;
         flex-direction: column;
@@ -492,8 +491,6 @@
       .row-first { margin-top: -90px; }
     }
 
-    @media (min-width: 751px) { .trials-caption { color: #000000 !important; } }
-    @media (max-width: 750px) { .rebuilding-caption { color: #8B8784 !important; } }
   </style>
 </head>
 <body>
@@ -602,14 +599,14 @@
 
   <!-- TRIALS BELONG — YELLOW 6-col -->
   <div class="row">
-    <div class="card c6" style="background:#00FFFF;">
+    <div class="card c6 bg-accent">
       <div class="ct cc">
         <p class="t-martina" style="color:#1C180D;">
           Trials belong<br class="mob-only"><span class="desk-only"> </span>where patients are.
         </p>
       </div>
       <div class="card-caption">
-        <p class="t-phonic trials-caption" style="color:#1C180D;">
+        <p class="t-phonic" style="color:#1C180D;">
           The trial comes to the patient.<br>
           Not the other way around.<br>
           That's the magic of ElixirTrials.
@@ -637,7 +634,7 @@
       </div>
     </div>
 
-    <div class="card c2 diagram-card-hide-mobile" style="background:#000000;position:relative;">
+    <div class="card c2" style="background:#000000;position:relative;">
       <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
         <img src="images_1/diagram_1.svg" style="width:70%;height:auto;" alt="">
       </div>
@@ -736,12 +733,12 @@
     <div class="card c6">
       <img class="card-media" src="images_1/rebuilding.png" alt="">
       <div class="ct cc">
-        <p class="t-martina" style="max-width:700px;color:#ffffff;">
+        <p class="t-martina" style="max-width:700px;">
           Rebuilding clinical trials<br class="mob-only"><span class="desk-only"> </span>around patients.
         </p>
       </div>
       <div class="card-caption">
-        <p class="t-phonic rebuilding-caption" style="color:#ffffff;">
+        <p class="t-phonic" style="color:#8B8784;">
           Trials come to the patient.<br>
           Not the other way around.
         </p>
@@ -756,10 +753,10 @@
       <img class="card-media" src="images_1/heather.jpg" alt="Heather Grey" style="filter:grayscale(100%);object-position:center top;">
       <div class="scrim-heavy"></div>
       <div class="ct tl">
-        <p class="t-martina" style="color:#ffffff;">Heather Grey</p>
-        <p class="t-phonic" style="margin-top:4px;">CEO</p>
         <div style="margin-top:auto;display:flex;flex-direction:column;gap:4px;">
-          <p class="t-phonic">15+ years building and scaling clinical trial businesses.</p>
+          <p class="t-martina" style="font-size:20px; line-height:1.2;">Heather Grey</p>
+          <p class="t-phonic">CEO</p>
+          <p class="t-phonic" style="margin-top:32px;">15+ years building and scaling clinical trial businesses.</p>
           <p class="t-phonic">Former Tempus TIME Trial builder.</p>
           <p class="t-phonic">Led large scale pharma partnerships.</p>
           <p class="t-phonic">Global leader of clinical trial and Real World Data teams.</p>
@@ -771,10 +768,10 @@
       <img class="card-media" src="images_1/noah.jpg" alt="Noah Dolev" style="filter:grayscale(100%);object-position:center top;">
       <div class="scrim-heavy"></div>
       <div class="ct tl">
-        <p class="t-martina" style="color:#ffffff;">Noah Dolev</p>
-        <p class="t-phonic" style="margin-top:4px;">PhD, CTO</p>
         <div style="margin-top:auto;display:flex;flex-direction:column;gap:4px;">
-          <p class="t-phonic">PHD, Computational Neuroscience.</p>
+          <p class="t-martina" style="font-size:20px; line-height:1.2;">Noah Dolev</p>
+          <p class="t-phonic">PhD, CTO</p>
+          <p class="t-phonic" style="margin-top:32px;">PHD, Computational Neuroscience.</p>
           <p class="t-phonic">15+ years building AI products.</p>
           <p class="t-phonic">6 startups.</p>
           <p class="t-phonic">2 unicorns — Wix, Gong.</p>
