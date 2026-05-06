@@ -18,7 +18,7 @@ git push
 
 ## ⚠️ Claude instruction
 Every time you deliver an HTML file, you MUST also provide the push command above so the user can deploy immediately.
-Never modify the file name — it is always index.html.
+Never modify the file name — always keep the exact filename as shared by the user.
 
 ## Local file path
 /Users/tatsumitaeron/Library/Mobile Documents/com~apple~CloudDocs/_pro/T_work/elixirtrials/
