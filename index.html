@@ -42,17 +42,19 @@
 
     @font-face {
       font-family: "MartinaPlan";
-      src: url("fonts/MartinaPlan-Regular.woff2") format("woff2");
+      src: url("fonts/martina-plantijn-regular.woff2") format("woff2");
       font-weight: 400;
     }
     @font-face {
       font-family: "RHPhonic";
-      src: url("fonts/RHPhonic-Regular.woff2") format("woff2");
+      src: url("fonts/Phonic-Regular.woff2") format("woff2");
       font-weight: 400;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    @media (min-width: 751px) { html { scroll-behavior: auto; } }
+
     html, body {
       background: var(--bg);
       color: var(--white);
@@ -69,7 +71,7 @@
     .page {
       max-width: 1728px;
       margin: 0 auto;
-      padding: 0 var(--mg);
+      padding: 0 var(--mg) var(--mg);
       display: flex;
       flex-direction: column;
       gap: var(--gu);
@@ -95,8 +97,9 @@
       width: 100%; height: 100%;
       object-fit: cover; display: block;
     }
-    .scrim       { position: absolute; inset: 0; background: rgba(0,0,0,.38); }
-    .scrim-heavy { position: absolute; inset: 0; background: rgba(0,0,0,.54); }
+    .scrim       { position: absolute; inset: 0; background: rgba(0,0,0,.40); }
+    .scrim-heavy { position: absolute; inset: 0; background: rgba(0,0,0,.50); }
+    .scrim-light { position: absolute; inset: 0; background: rgba(0,0,0,.30); }
 
     .card-caption {
       position: absolute;
@@ -150,10 +153,9 @@
       text-transform: uppercase;
       color: #8B8784;
     }
-    .name-30 { font-size: 30px; line-height: calc(36/30); }
     .dark-c { color: var(--bg); }
 
-    .row-first { margin-top: -90px; }
+    .row-first { margin-top: -15px; }
 
     /* ─── NAV ─── */
     nav {
@@ -162,29 +164,35 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: transparent;
-      margin: 0;
-      margin-bottom: 0;
+      overflow: visible;
     }
     .nav-logo {
-      background: transparent;
       padding: 0;
       display: inline-flex; align-items: center;
-      box-sizing: border-box;
     }
-    .nav-links { display: flex; gap: 0; list-style: none; }
+    .nav-links { display: flex; gap: 0; list-style: none; position: relative; overflow: visible; }
     .nav-links a {
       font-family: "RHPhonic", sans-serif;
       font-size: 12.5px; letter-spacing: 0.03em;
-      background: rgba(255,255,255,1); color: #1C180D;
-      transition: background 0.3s ease;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.6s ease;
       padding: 0 14px;
       height: 30px;
-      border-radius: 15px;
       display: inline-flex; align-items: center; justify-content: center;
-      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
     }
-    .nav-links a:hover { background: #eee; }
+
+
+    .nav-links a span {
+      position: relative;
+      z-index: 2;
+    }
+    .nav-links a.nav-blur {
+      color: rgba(255,255,255,1) !important;
+    }
+    .nav-links a:hover { color: rgba(255,255,255,0.7); }
+    .nav-links a.nav-blur:hover { color: rgba(255,255,255,1) !important; }
     .hero {
       border-radius: var(--r);
       background: #1C180D;
@@ -281,39 +289,8 @@
     @media (max-width: 1200px) {
       .flow-label { font-size: 12.5px; line-height: calc(15/12.5); }
     }
-    @media (max-width: 750px) {
-      .flow-label { font-size: 12.5px; line-height: calc(15/12.5); }
-    }
 
     /* ─── FOOTER ─── */
-    .footer-wrap {
-      background: #1C180D;
-      border-radius: var(--r);
-      overflow: hidden;
-      min-height: 720px;
-      position: relative;
-      margin-bottom: 30px;
-      display: flex;
-      flex-direction: column;
-    }
-    .footer-top {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      flex: 1;
-      min-height: 720px;
-    }
-    .footer-col {
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-    }
-    .footer-col-1 {
-      grid-column: 1 / 3;
-      justify-content: space-between;
-    }
-    .footer-col-6 {
-      justify-content: flex-end;
-    }
     .footer-brand-p {
       font-family: "MartinaPlan", Georgia, serif;
       font-size: 30px;
@@ -321,60 +298,18 @@
       letter-spacing: -0.01em;
       color: #fff;
     }
-    .footer-brand p {
-      font-family: "MartinaPlan", Georgia, serif;
-      font-size: 30px;
-      line-height: calc(36/30);
-      letter-spacing: -0.01em;
-      color: #fff;
-    }
-    .footer-brand .brand-italic {
-      font-style: normal;
-    }
-    .footer-links {
-      list-style: none;
-    }
-    .footer-links li {
+    .footer-tagline-p {
       font-family: "MartinaPlan", Georgia, serif;
       font-size: 30px;
       line-height: calc(36/30);
       letter-spacing: -0.01em;
       color: #8B8784;
-    }
-    .footer-links a {
-      color: #8B8784;
-    }
-    .footer-links a:hover {
-      color: #ffffff;
     }
     .footer-legal {
       font-family: "RHPhonic", sans-serif;
       font-size: 10px;
       line-height: calc(12/10);
       letter-spacing: 0;
-      color: #8B8784;
-    }
-    .footer-bottom-area {
-      flex: 1;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
-      position: relative;
-      min-height: 360px;
-      margin-top: 60px;
-    }
-    .footer-logo {
-      position: absolute;
-      left: -30px;
-      bottom: -30px;
-      display: block;
-    }
-    .footer-tagline p,
-    .footer-tagline-p {
-      font-family: "MartinaPlan", Georgia, serif;
-      font-size: 30px;
-      line-height: calc(36/30);
-      letter-spacing: -0.01em;
       color: #8B8784;
     }
 
@@ -386,6 +321,17 @@
 
     .mob-only  { display: none; }
     .desk-only { display: inline; }
+
+    /* ─── UTILITIES ─── */
+    .img-scale { transform: scale(1.5); transform-origin: center center; }
+    .img-top   { object-position: center top; }
+    .img-gray  { filter: grayscale(100%); }
+    .abs-center {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mt-auto-col { margin-top: auto; display: flex; flex-direction: column; }
+    .team-bullets { margin-top: auto; display: flex; flex-direction: column; gap: 4px; }
 
     /* ─── TABLET (under 1200px) ─── */
     @media (max-width: 1200px) {
@@ -417,10 +363,12 @@
       .card.bg-dark .ct { position: absolute; inset: 0; height: auto; width: 100%; }
       .card { border-radius: 15px; }
       .row > * + * { margin-top: 0; }
-      nav { position: fixed; padding: 0 15px 0 0 !important; margin: 0 !important; top: 0; left: 0; right: 0; height: 60px; align-items: center; z-index: 100; }
+      nav { position: fixed; padding: 0 15px 0 0 !important; margin: 0 !important; top: 0; left: 0; right: 0; height: 60px; align-items: center; z-index: 1000; overflow: visible; }
       .hero { width: 100vw; height: calc(100vw * 4 / 3); border-radius: 15px; }
-      .footer-top { grid-template-columns: 1fr; gap: 30px; }      .page { gap: 60px; padding: 0; padding-top: 60px; }
+      .footer-top { grid-template-columns: 1fr; gap: 30px; }
+      .page { gap: 60px; padding: 0; padding-top: 60px; }
       .footer-wrap { display: none; }
+      .diagram-card-hide-mobile { display: none !important; }
       .footer-mobile {
         display: flex;
         flex-direction: column;
@@ -460,7 +408,7 @@
         bottom: 0;
         display: block;
       }
-      .broken-subtext { color: #1C180D !important; }
+      .broken-subtext { color: #000000 !important; }
       .maria-subtext { color: #ffffff !important; }
       .flist li { font-size: 12.5px; line-height: calc(15/12.5); letter-spacing: 0.01em; }
       .footer-tagline p { font-size: 20px; line-height: calc(24/20); }
@@ -473,9 +421,11 @@
       .mob-only  { display: inline; }
       .desk-only { display: none; }
       .legal-row-desktop { display: none; }
-      .row-first { margin-top: -90px; }
+      .row-first { margin-top: 0; }
     }
 
+    @media (min-width: 751px) { .trials-caption { color: #000000 !important; } }
+    @media (max-width: 750px) { .rebuilding-caption { color: #ffffff !important; } }
   </style>
 </head>
 <body>
@@ -486,9 +436,9 @@
   <nav>
     <a href="#" class="nav-logo"><img id="nav-logo" src="images/logo_1.svg" alt="ElixirTrials" style="display:block; height:60px;"></a>
     <ul class="nav-links">
-      <li><a href="#process">PROCESS</a></li>
-      <li><a href="#about">ABOUT</a></li>
-      <li><a href="#contact">CONTACT</a></li>
+      <li><a href="#process"><span>PROCESS</span></a></li>
+      <li><a href="#about"><span>ABOUT</span></a></li>
+      <li><a href="#contact"><span>CONTACT</span></a></li>
     </ul>
   </nav>
 
@@ -508,23 +458,23 @@
   <div class="row">
 
     <div class="card c2" style="background:#0e0e0e;">
-      <img class="card-media" src="images/image_1.jpg" alt="">
+      <img class="card-media img-scale" src="images/image_1.jpg" alt="">
       <div class="ct tl">
-        <p class="t-martina" style="line-height:1.1; color:#1C180D;">80% of trials fail to meet<br>enrollment targets.</p>
+        <p class="t-martina" style="line-height:1.1; color:#000000;">80% of trials fail to meet<br>enrollment targets.</p>
       </div>
     </div>
 
     <div class="card c2" style="background:#0e0e0e;">
-      <img class="card-media" src="images/image_2.jpg" alt="" style="transform:scale(1.5); transform-origin:center center;">
+      <img class="card-media img-scale" src="images/image_2.jpg" alt="">
       <div class="ct tl">
-        <p class="t-martina" style="line-height:1.1; color:#1C180D;">$8M lost per day<br>when trials are delayed.</p>
+        <p class="t-martina" style="line-height:1.1; color:#000000;">$8M lost per day<br>when trials are delayed.</p>
       </div>
     </div>
 
     <div class="card c2" style="background:#0e0e0e;">
-      <img class="card-media" src="images/image_3.jpg" alt="" style="transform:scale(1.5); transform-origin:center center;">
+      <img class="card-media img-scale" src="images/image_3.jpg" alt="">
       <div class="ct tl">
-        <p class="t-martina" style="line-height:1.1; color:#1C180D;">88% of U.S. hospitals<br>lack infrastructure<br>to run clinical trials.</p>
+        <p class="t-martina" style="line-height:1.1; color:#000000;">88% of U.S. hospitals<br>lack infrastructure<br>to run clinical trials.</p>
       </div>
     </div>
 
@@ -534,7 +484,7 @@
   <div class="row">
     <div class="card c6" style="background:#D4CFC9;">
       <div class="ct cc">
-        <p class="t-martina" style="max-width:500px; color:#1C180D;">For most patients,<br>clinical trials are out of reach.</p>
+        <p class="t-martina" style="max-width:500px; color:#000000;">For most patients,<br>clinical trials are out of reach.</p>
       </div>
     </div>
   </div>
@@ -542,7 +492,8 @@
   <!-- MARIA 6-col -->
   <div class="row">
     <div class="card c6 bg-dark">
-      <video class="card-media" src="images/maria.mp4" autoplay muted loop playsinline></video>
+      <video class="card-media" src="images/maria.mov" autoplay muted loop playsinline></video>
+      <div class="scrim-light"></div>
       <div class="ct cc">
         <p class="t-martina" style="max-width:520px;">
           Maria drove 4 hours each way.<br>
@@ -574,7 +525,7 @@
         </p>
       </div>
       <div class="card-caption">
-        <p class="t-phonic" style="color:#1C180D;">
+        <p class="t-phonic" style="color:#000000;">
           It's time to fix the broken system.<br>
           Clinical trial access for all is now a reality.
         </p>
@@ -584,14 +535,14 @@
 
   <!-- TRIALS BELONG — YELLOW 6-col -->
   <div class="row">
-    <div class="card c6 bg-accent">
+    <div class="card c6" style="background:#A8D5BA;">
       <div class="ct cc">
-        <p class="t-martina" style="color:#1C180D;">
+        <p class="t-martina" style="color:#000000;">
           Trials belong<br class="mob-only"><span class="desk-only"> </span>where patients are.
         </p>
       </div>
       <div class="card-caption">
-        <p class="t-phonic" style="color:#1C180D;">
+        <p class="t-phonic trials-caption" style="color:#000000;">
           The trial comes to the patient.<br>
           Not the other way around.<br>
           That's the magic of ElixirTrials.
@@ -605,7 +556,7 @@
     <div class="card c2 bg-dark">
       <div class="ct tl">
         <p class="t-martina">You treat<br>the patients.</p>
-        <div style="margin-top:auto; display:flex; flex-direction:column;">
+        <div class="mt-auto-col">
           <ul class="flist">
             <li>Zero upfront cost to site.</li>
             <li>100% of trial revenue retained by site.</li>
@@ -619,8 +570,8 @@
       </div>
     </div>
 
-    <div class="card c2" style="background:#000000;position:relative;">
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+    <div class="card c2 diagram-card-hide-mobile" style="background:#000000;position:relative;">
+      <div class="abs-center">
         <img src="images/diagram_1.svg" style="width:70%;height:auto;" alt="">
       </div>
     </div>
@@ -628,7 +579,7 @@
     <div class="card c2 bg-dark">
       <div class="ct tl">
         <p class="t-martina">You bring<br>the science.</p>
-        <div style="margin-top:auto; display:flex; flex-direction:column;">
+        <div class="mt-auto-col">
           <ul class="flist">
             <li>Unlock access to unreachable patients at scale.</li>
             <li>Accelerated enrollment across a unified network.</li>
@@ -675,7 +626,7 @@
     <div class="card c2 bg-dark">
       <div class="ct tl">
         <p class="t-martina" style="margin-bottom:18px;">Phase 1 — Build</p>
-        <div style="margin-top:auto;">
+        <div class="mt-auto-col">
           <ul class="flist">
             <li>Philanthropic funding builds the infrastructure.</li>
             <li>Making sites trial-ready.</li>
@@ -689,7 +640,7 @@
     </div>
 
     <div class="card c2" style="background:#000000;position:relative;">
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+      <div class="abs-center">
         <img src="images/diagram_2.svg" style="width:70%;height:auto;" alt="">
       </div>
     </div>
@@ -697,7 +648,7 @@
     <div class="card c2 bg-dark">
       <div class="ct tl">
         <p class="t-martina" style="margin-bottom:18px;">Phase 2 — Scale</p>
-        <div style="margin-top:auto;">
+        <div class="mt-auto-col">
           <ul class="flist">
             <li>Sponsor funded trials run through the network.</li>
             <li>Sites keep the rate card revenue.</li>
@@ -716,14 +667,14 @@
   <!-- REBUILDING 6-col -->
   <div class="row">
     <div class="card c6">
-      <img class="card-media" src="images/rebuilding.jpg" alt="">
+      <img class="card-media" src="images/rebuilding.png" alt="">
       <div class="ct cc">
-        <p class="t-martina" style="max-width:700px;">
+        <p class="t-martina" style="max-width:700px;color:#ffffff;">
           Rebuilding clinical trials<br class="mob-only"><span class="desk-only"> </span>around patients.
         </p>
       </div>
       <div class="card-caption">
-        <p class="t-phonic" style="color:#8B8784;">
+        <p class="t-phonic rebuilding-caption" style="color:#ffffff;">
           Trials come to the patient.<br>
           Not the other way around.
         </p>
@@ -735,13 +686,13 @@
   <div class="row" id="about" style="scroll-margin-top:-15px;">
 
     <div class="card c3" style="background:#1a1a1a;">
-      <img class="card-media" src="images/heather.jpg" alt="Heather Grey" style="filter:grayscale(100%);object-position:center top;">
+      <img class="card-media img-gray img-top" src="images/heather.jpg" alt="Heather Grey">
       <div class="scrim-heavy"></div>
       <div class="ct tl">
-        <div style="margin-top:auto;display:flex;flex-direction:column;gap:4px;">
-          <p class="t-martina" style="font-size:20px; line-height:1.2;">Heather Grey</p>
-          <p class="t-phonic">CEO</p>
-          <p class="t-phonic" style="margin-top:32px;">15+ years building and scaling clinical trial businesses.</p>
+        <p class="t-martina" style="color:#ffffff;">Heather Grey</p>
+        <p class="t-phonic" style="margin-top:4px;">CEO</p>
+        <div class="team-bullets">
+          <p class="t-phonic">15+ years building and scaling clinical trial businesses.</p>
           <p class="t-phonic">Former Tempus TIME Trial builder.</p>
           <p class="t-phonic">Led large scale pharma partnerships.</p>
           <p class="t-phonic">Global leader of clinical trial and Real World Data teams.</p>
@@ -750,13 +701,13 @@
     </div>
 
     <div class="card c3" style="background:#1a1a1a;">
-      <img class="card-media" src="images/noah.jpg" alt="Noah Dolev" style="filter:grayscale(100%);object-position:center top;">
+      <img class="card-media img-gray img-top" src="images/noah.jpg" alt="Noah Dolev">
       <div class="scrim-heavy"></div>
       <div class="ct tl">
-        <div style="margin-top:auto;display:flex;flex-direction:column;gap:4px;">
-          <p class="t-martina" style="font-size:20px; line-height:1.2;">Noah Dolev</p>
-          <p class="t-phonic">PhD, CTO</p>
-          <p class="t-phonic" style="margin-top:32px;">PHD, Computational Neuroscience.</p>
+        <p class="t-martina" style="color:#ffffff;">Noah Dolev</p>
+        <p class="t-phonic" style="margin-top:4px;">PhD, CTO</p>
+        <div class="team-bullets">
+          <p class="t-phonic">PHD, Computational Neuroscience.</p>
           <p class="t-phonic">15+ years building AI products.</p>
           <p class="t-phonic">6 startups.</p>
           <p class="t-phonic">2 unicorns — Wix, Gong.</p>
@@ -769,7 +720,7 @@
   <!-- CONTACT CTA 6-col -->
   <div class="row" id="contact" style="scroll-margin-top:-15px;">
     <div class="card c6">
-      <img class="card-media contact-img" src="images/contact.jpg" alt="">
+      <img class="card-media contact-img" src="images/contact.png" alt="">
       <div class="ct cc">
         <a href="mailto:heather@elixirtrials.com" class="email-big t-martina">heather@elixirtrials.com</a>
       </div>
@@ -782,14 +733,14 @@
     <div class="card c2 bg-dark" style="height:auto; min-height:var(--h);">
       <div class="ct tl">
         <p class="footer-brand-p">Elixir<span style="color:#8B8784;">Trials</span></p>
-        <div style="margin-top:auto;">
+        <div class="mt-auto-col">
           <p class="footer-tagline-p">Trials belong<br>where patients are.</p>
         </div>
       </div>
     </div>
     <!-- Card 2: logo -->
     <div class="card c2" style="height:auto; min-height:var(--h); background:#000000;">
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+      <div class="abs-center">
         <img id="footer-logo" src="images/logo_1.svg" style="width:33.33333%;height:auto;" alt="ElixirTrials">
       </div>
     </div>
@@ -812,16 +763,10 @@
 
   <!-- FOOTER MOBILE: 3 stacked cards -->
   <div class="footer-mobile">
-    <div class="footer-mobile-card">
-      <p class="footer-legal">
-        ElixirTrials operates under a decentralized site activation model designed to expand clinical trial access to underserved and geographically distributed patient populations. All participating hospital sites undergo formal feasibility assessment, regulatory documentation review, and protocol-specific staff training prior to site initiation.<br><br>
-        Data collection, patient safety monitoring, and adverse event reporting are conducted in accordance with 21 CFR Part 11 and applicable Good Clinical Practice standards. ElixirTrials maintains full audit trail capability across all site activities via the Cauldron platform.<br><br>
-        ElixirTrials is a clinical research organization operating in compliance with ICH-GCP guidelines and applicable FDA and EMA regulations. All trial activities are conducted under institutional review board (IRB) oversight.<br><br>
-        Cauldron is a proprietary clinical trial management platform developed by ElixirTrials Inc. Site partnerships are subject to executed master service agreements.
-      </p>
-    </div>
-    <div class="footer-mobile-card" style="background:#000000;display:flex;align-items:center;justify-content:center;">
-      <img id="footer-logo-mobile" src="images/logo_1.svg" style="width:33.33333%;height:auto;" alt="ElixirTrials">
+    <div class="footer-mobile-card" style="background:#000000;position:relative;">
+      <div class="abs-center">
+        <img id="footer-logo-mobile" src="images/logo_1.svg" style="width:33.33333%;height:auto;" alt="ElixirTrials">
+      </div>
     </div>
     <div class="footer-mobile-card footer-mobile-brand">
       <p class="footer-brand-text">Elixir<span style="color:#8B8784;">Trials</span></p>
@@ -833,65 +778,113 @@
 
 </div>
 <script>
-  (function() {
-    var footerLogoMobile = document.getElementById('footer-logo-mobile');
-    var footerLogo = document.getElementById('footer-logo');
-    if (footerLogo) {
-      var fi = 0;
-      var flogos = ['images/logo_1.svg', 'images/logo_2.svg', 'images/logo_3.svg', 'images/logo_4.svg'];
-      setInterval(function() {
-        fi = (fi + 1) % 4;
-        footerLogo.src = flogos[fi];
-        if (footerLogoMobile) footerLogoMobile.src = flogos[fi];
-      }, 1000);
-    }
+  // ── Footer logo cycler ──────────────────────────────────────────────────────
+  (() => {
+    const footerLogo       = document.getElementById('footer-logo');
+    const footerLogoMobile = document.getElementById('footer-logo-mobile');
+    if (!footerLogo) return;
+    const logos = ['images/logo_1.svg', 'images/logo_2.svg', 'images/logo_3.svg', 'images/logo_4.svg'];
+    let fi = 0;
+    setInterval(() => {
+      fi = (fi + 1) % logos.length;
+      footerLogo.src = logos[fi];
+      if (footerLogoMobile) footerLogoMobile.src = logos[fi];
+    }, 1000);
   })();
 
-  (function() {
-    var processLink = document.querySelector('a[href="#process"]');
-    if (processLink) {
-      processLink.addEventListener('click', function(e) {
+  // ── Smooth scroll for nav links ─────────────────────────────────────────────
+  (() => {
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+        if (!href || href[0] !== '#') return;
+        const target = document.getElementById(href.slice(1));
+        if (!target) return;
         e.preventDefault();
-        var target = document.getElementById('process');
-        if (target) {
-        var navHeight = window.innerWidth <= 750 ? 60 : 0;
-          var top = target.getBoundingClientRect().top + window.scrollY - navHeight;
-          window.scrollTo({ top: top, behavior: 'smooth' });
+        const navHeight = window.innerWidth <= 750 ? 60 : 0;
+        const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
+        if (window.innerWidth > 750) {
+          const startY   = window.scrollY;
+          const dist     = top - startY;
+          const duration = 150;
+          let t0 = null;
+          const step = ts => {
+            if (!t0) t0 = ts;
+            const p    = Math.min((ts - t0) / duration, 1);
+            const ease = 1 - Math.pow(1 - p, 2);
+            window.scrollTo(0, startY + dist * ease);
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        } else {
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  })();
+
+  // ── Nav logo + active-section highlight ────────────────────────────────────
+  (() => {
+    const logo     = document.getElementById('nav-logo');
+    const logos    = ['images/logo_1.svg', 'images/logo_2.svg', 'images/logo_3.svg', 'images/logo_4.svg'];
+    let current    = 0;
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = [
+      { id: 'process', href: '#process' },
+      { id: 'about',   href: '#about'   },
+      { id: 'contact', href: '#contact' },
+    ];
+
+    function getLogoIndex() {
+      const scrolled = Math.max(0, window.scrollY);
+      const total    = document.body.scrollHeight - window.innerHeight;
+      if (total <= 0) return 0;
+      const loops = window.innerWidth <= 750 ? 6 : 3;
+      const steps = loops * 4;
+      return Math.min(Math.floor((scrolled / total) * steps), steps) % 4;
+    }
+
+    function updateNav() {
+      const scrolled     = window.scrollY;
+      const sectionTops  = sections.map(s => {
+        const el = document.getElementById(s.id);
+        return el ? el.getBoundingClientRect().top + scrolled : Infinity;
+      });
+
+      let activeHref = null;
+      for (let i = 0; i < sections.length; i++) {
+        const start = sectionTops[i] - 60;
+        const end   = i < sections.length - 1 ? sectionTops[i + 1] - 60 : Infinity;
+        if (scrolled >= start && scrolled < end) activeHref = sections[i].href;
+      }
+
+      navLinks.forEach(a => {
+        if (scrolled === 0) {
+          // At the very top: all transparent
+          a.classList.remove('nav-blur');
+          a.style.color = 'rgba(255,255,255,0.6)';
+        } else if (activeHref && a.getAttribute('href') === activeHref) {
+          // Active section: full white
+          a.classList.add('nav-blur');
+          a.style.color = 'rgba(255,255,255,1)';
+        } else if (activeHref) {
+          // Another section active: dim others
+          a.classList.remove('nav-blur');
+          a.style.color = 'rgba(255,255,255,0.6)';
+        } else {
+          // Scrolling but no section active yet: all full white
+          a.classList.remove('nav-blur');
+          a.style.color = 'rgba(255,255,255,1)';
         }
       });
     }
-  })();
 
-  (function() {
-    var logo = document.getElementById('nav-logo');
-    var logos = ['images/logo_1.svg', 'images/logo_2.svg', 'images/logo_3.svg', 'images/logo_4.svg'];
-    var current = 0;
-
-    function getIndex() {
-      var scrolled = Math.max(0, window.scrollY);
-      var total = document.body.scrollHeight - window.innerHeight;
-      if (total <= 0) return 0;
-      var pct = scrolled / total;
-      var loops = window.innerWidth <= 750 ? 6 : 3;
-      var steps = loops * 4;
-      var step = Math.min(Math.floor(pct * steps), steps);
-      return step % 4;
-    }
-
-    var navLinks = document.querySelectorAll('.nav-links a');
-    function updateNav() {
-      var scrolled = window.scrollY;
-      var bg = scrolled > 10 ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,1)';
-      navLinks.forEach(function(a) { a.style.background = bg; });
-    }
     updateNav();
 
-    window.addEventListener('scroll', function() {
-      var idx = getIndex();
-      if (idx !== current) {
-        current = idx;
-        logo.src = logos[current];
-      }
+    window.addEventListener('scroll', () => {
+      const idx = getLogoIndex();
+      if (idx !== current) { current = idx; logo.src = logos[current]; }
       updateNav();
     }, { passive: true });
   })();
