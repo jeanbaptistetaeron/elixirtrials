@@ -325,6 +325,16 @@
 
     /* ─── UTILITIES ─── */
     .img-scale { transform: scale(1.5); transform-origin: center center; }
+    .contact-img {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: var(--h);
+      height: var(--w6);
+      object-fit: cover;
+      transform: translate(-50%, -50%) rotate(90deg);
+      transform-origin: center center;
+      max-width: none;
+    }
     .img-top   { object-position: center top; }
     .img-gray  { filter: grayscale(100%); }
     .abs-center {
